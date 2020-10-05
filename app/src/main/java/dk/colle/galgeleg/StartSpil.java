@@ -2,13 +2,17 @@ package dk.colle.galgeleg;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class StartSpil extends AppCompatActivity implements View.OnClickListener {
     Button gaet;
@@ -18,12 +22,16 @@ public class StartSpil extends AppCompatActivity implements View.OnClickListener
     ArrayList<String> rigtigeBogstaver = new ArrayList<>();
     boolean gaettetRigtigt = false;
     int antalForkerte = 0;
+    int antalVundet = 0;
+    SharedPreferences prefs;
+    Date startTid, slutTid;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_spil);
+
 
         ord.add("hej");
 
@@ -34,7 +42,11 @@ public class StartSpil extends AppCompatActivity implements View.OnClickListener
         gaet.setOnClickListener(this);
 
 
-
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        antalVundet = prefs.getInt("gangeVundet", 0);
+        System.out.println("Sidste vundne spil tog: " + prefs.getLong("timeToWin",0) + " sekunder");
+        startTid = new Date();
+        System.out.println(startTid);
     }
 
     @Override
@@ -90,7 +102,11 @@ public class StartSpil extends AppCompatActivity implements View.OnClickListener
         }
 
         if (rigtigeBogstaver.size()-1 == ord.get(0).length()){
-            System.out.println("Du vandt ordet var: " + ord.get(0));
+            slutTid = new Date();
+            System.out.println(slutTid);
+            prefs.edit().putLong("timeToWin",(slutTid.getTime()-startTid.getTime())/1000).apply();
+            System.out.println("Du vandt ordet var: " + ord.get(0) + "\nDin tid var: " + prefs.getLong("timeToWin",0) + " sekunder");
+            prefs.edit().putInt("gangeVundet",++antalVundet).apply();
         }
     }
 }
