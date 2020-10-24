@@ -10,12 +10,8 @@
         android:id="@+id/galgebillede"
         android:layout_width="315dp"
         android:layout_height="286dp"
-        android:layout_marginStart="41dp"
-        android:layout_marginTop="46dp"
-        android:layout_marginEnd="41dp"
-        android:layout_marginBottom="37dp"
-        app:layout_constraintBottom_toTopOf="@+id/gaet"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="38dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/galge" />
@@ -24,28 +20,83 @@
         android:id="@+id/gaet"
         android:layout_width="122dp"
         android:layout_height="55dp"
-        android:layout_marginStart="13dp"
-        android:layout_marginEnd="42dp"
-        android:layout_marginBottom="307dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="64dp"
         android:text="Gæt"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/bogstav"
-        app:layout_constraintTop_toBottomOf="@+id/galgebillede" />
+        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver" />
 
     <EditText
         android:id="@+id/bogstav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginBottom="312dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="23dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Indtast et bogstav her"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/gaet"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/galgebillede" />
+        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver" />
+
+    <TextView
+        android:id="@+id/rigtigtOrd"
+        android:layout_width="358dp"
+        android:layout_height="45dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="42dp"
+        android:layout_marginBottom="76dp"
+        android:text="egagea"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+    <TableLayout
+        android:id="@+id/gaettedeBogstaver"
+        android:layout_width="416dp"
+        android:layout_height="124dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="7dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/galgebillede">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/ekstraText"
+        android:layout_width="337dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="54dp"
+        android:text="Ord der bliver gættet på"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gaet" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

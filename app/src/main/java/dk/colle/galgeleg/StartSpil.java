@@ -109,4 +109,6 @@ public class StartSpil extends AppCompatActivity implements View.OnClickListener
             prefs.edit().putInt("gangeVundet",++antalVundet).apply();
         }
     }
+
+
 }

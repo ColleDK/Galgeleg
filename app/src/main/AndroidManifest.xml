@@ -4,7 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,11 +11,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Highscore"></activity>
+        <activity android:name=".StartMenu"></activity>
+        <activity android:name=".Highscore" />
         <activity android:name=".Hjaelp" />
         <activity android:name=".Indstillinger" />
         <activity android:name=".StartSpil" />
-        <activity android:name=".StartMenu">
+        <activity android:name=".HovedAktivitet">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

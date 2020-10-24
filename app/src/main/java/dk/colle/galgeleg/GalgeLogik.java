@@ -117,7 +117,7 @@ public class GalgeLogik {
 
     public void logStatus() {
         System.out.println("---------- ");
-        System.out.println("- ordet (skult) = " + ordet);
+        System.out.println("- ordet (skjult) = " + ordet);
         System.out.println("- synligtOrd = " + synligtOrd);
         System.out.println("- forkerteBogstaver = " + antalForkerteBogstaver);
         System.out.println("- brugeBogstaver = " + brugteBogstaver);
