@@ -14,15 +14,7 @@ public class HovedAktivitet extends AppCompatActivity {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoved_aktivitet);
-
-        if (savedInstanceState == null){
-            Fragment fragment = new StartMenu_Frag();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentView,fragment)
-                    .commit();
-        }
-
-        setTitle("Hejsa");
+        setTitle("Galgeleg");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }
