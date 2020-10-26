@@ -45,13 +45,25 @@ public class StartMenu_Frag extends Fragment implements View.OnClickListener {
                     .commit();
         }
         if (v == indstillinger){
-            //getFragmentManager().beginTransaction().add().commit();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .replace(R.id.fragmentView, new Indstillinger_frag())
+                    .addToBackStack(null)
+                    .commit();
         }
         if (v == hjaelp){
-            //getFragmentManager().beginTransaction().add().commit();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .replace(R.id.fragmentView, new Hjaelp_frag())
+                    .addToBackStack(null)
+                    .commit();
         }
         if (v == highScore){
-            //getFragmentManager().beginTransaction().add().commit();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .replace(R.id.fragmentView, new Highscore_frag())
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 

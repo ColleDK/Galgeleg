@@ -1,5 +1,8 @@
 package dk.colle.galgeleg;
 
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -7,19 +10,30 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.Set;
 
 public class EgenGalgeLogik {
-    ArrayList<String> ord = new ArrayList<>();
-    ArrayList<String> brugteBogstaver = new ArrayList<>();
-    String rigtigtOrd = "";
-    StartSpil_frag sf;
+    private ArrayList<String> ord = new ArrayList<>();
+    private ArrayList<String> brugteBogstaver = new ArrayList<>();
+    private String rigtigtOrd = "";
+    public static StartSpil_frag sf;
     int antalForkerte=0;
+    private SharedPreferences prefs;
+    private Set<String> highScores;
 
-    public EgenGalgeLogik(StartSpil_frag sf) throws Exception {
+
+    public EgenGalgeLogik(StartSpil_frag sf){
+        prefs = PreferenceManager.getDefaultSharedPreferences(sf.getContext());
         this.sf = sf;
-        hentOrdFraDr();
-        rigtigtOrd = ord.get((int) (Math.random() * 6));
+        try {
+            hentOrdFraDr();
+        } catch (Exception e) {
+            System.out.println("ohno");
+            e.printStackTrace();
+        }
+        //rigtigtOrd = ord.get((int) (Math.random() * 6));
         brugteBogstaver.clear();
+        //highScores = prefs.getStringSet("highScores",null);
     }
 
 

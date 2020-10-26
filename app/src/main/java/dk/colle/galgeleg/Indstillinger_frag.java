@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment;
 public class Indstillinger_frag extends Fragment implements View.OnClickListener {
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-
+        return null;
     }
 
 

@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 
 public class StartSpil_frag extends Fragment implements View.OnClickListener {
-    GalgeLogik logik = new GalgeLogik();
+    private static EgenGalgeLogik logik;
     ImageView billede;
     TableLayout gaettedeBogstaver;
     EditText gaetBogstav;
@@ -42,6 +42,9 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         ekstraText.setText("Det ord du gætter på er: ");
 
         gaet.setOnClickListener(this);
+        System.out.println("not dead");
+
+        logik = new EgenGalgeLogik(this);
 
         return rod;
     }
@@ -49,7 +52,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        logik.gætBogstav(gaetBogstav.getText().toString());
+        logik.gaetBogstav(gaetBogstav.getText().toString());
     }
 
     public void setRigtigtOrd(String ord){

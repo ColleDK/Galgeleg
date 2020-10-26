@@ -6,18 +6,11 @@
     tools:context=".HovedAktivitet"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Her er et eller andet nice tekst"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp"/>
-
     <fragment
-        android:id="@+id/fragment"
+        android:id="@+id/fragmentView"
         android:name="dk.colle.galgeleg.StartMenu_Frag"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        />
 
 </LinearLayout>
