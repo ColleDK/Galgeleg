@@ -5,20 +5,24 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TableLayout;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 
 public class StartSpil_frag extends Fragment implements View.OnClickListener {
-    GalgeLogik logik = new GalgeLogik();
+    GalgeLogik logik;
     ImageView billede;
-    TableLayout gaettedeBogstaver;
     EditText gaetBogstav;
     Button gaet;
-    TextView rigtigtOrd,ekstraText;
+    ListView listView;
+    ArrayList<String> gaettedeBogstaverList = new ArrayList<>();
+    ArrayAdapter adapter;
 
 
     @Override
@@ -27,7 +31,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         billede = rod.findViewById(R.id.galgebillede);
         billede.setImageResource(R.drawable.galge);
 
-        gaettedeBogstaver = rod.findViewById(R.id.gaettedeBogstaver);
+        System.out.println("Hej");
 
         gaetBogstav = rod.findViewById(R.id.bogstav);
         gaetBogstav.setText("Indtast bogstav her");
@@ -35,13 +39,12 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         gaet = rod.findViewById(R.id.gaet);
         gaet.setText("Gæt på bogstav");
 
-        rigtigtOrd = rod.findViewById(R.id.rigtigtOrd);
-        rigtigtOrd.setText("");
-
-        ekstraText = rod.findViewById(R.id.ekstraText);
-        ekstraText.setText("Det ord du gætter på er: ");
+        listView = rod.findViewById(R.id.gaettedeBogstaver);
 
         gaet.setOnClickListener(this);
+        gaetBogstav.setOnClickListener(this);
+
+        logik = new GalgeLogik(this);
 
         return rod;
     }
@@ -49,6 +52,47 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        logik.gætBogstav(gaetBogstav.getText().toString());
+        if (v == gaet) {
+            logik.gætBogstav(gaetBogstav.getText().toString());
+            gaetBogstav.setText("");
+        }
+        else if (v == gaetBogstav){
+            gaetBogstav.setText("");
+        }
     }
+
+    public void setNytGaettedeBogstaver(String nytBogstav){
+        gaettedeBogstaverList.add(nytBogstav);
+        adapter = new ArrayAdapter(getContext(), R.layout.gaettedebogstaver_element, R.id.bogstavGaettet_element, gaettedeBogstaverList);
+        listView.setAdapter(adapter);
+    }
+
+    public void setRigtigtOrd(String ord){
+        //rigtigtOrd.setText(ord);
+    }
+
+
+    public void setBillede(int antalFejl) {
+        switch (antalFejl) {
+            case 1: billede.setImageResource(R.drawable.forkert1);
+            break;
+            case 2: billede.setImageResource(R.drawable.forkert2);
+            break;
+            case 3: billede.setImageResource(R.drawable.forkert3);
+            break;
+            case 4: billede.setImageResource(R.drawable.forkert4);
+            break;
+            case 5: billede.setImageResource(R.drawable.forkert5);
+            break;
+            case 6: billede.setImageResource(R.drawable.forkert6);
+            break;
+        }
+    }
+
+    public void Vundet(){
+
+    }
+
+    public void tabt(){}
+
 }

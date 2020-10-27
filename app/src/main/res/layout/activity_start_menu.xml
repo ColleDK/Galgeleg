@@ -11,16 +11,13 @@
         android:id="@+id/textView"
         android:layout_width="122dp"
         android:layout_height="47dp"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="19dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="casual"
         android:text="Galgeleg"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
         android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -28,84 +25,53 @@
         android:id="@+id/imageView"
         android:layout_width="241dp"
         android:layout_height="268dp"
-        android:layout_marginStart="82dp"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="32dp"
-        app:layout_constraintBottom_toTopOf="@+id/startSpil"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:srcCompat="@drawable/forkert6" />
 
-    <Button
-        android:id="@+id/startSpil"
-        android:layout_width="248dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="16dp"
-        android:backgroundTint="#D6D6D6"
-        android:text="Start spil"
-        app:layout_constraintBottom_toTopOf="@+id/highScore"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
-
-    <Button
-        android:id="@+id/highScore"
-        android:layout_width="248dp"
-        android:layout_height="58dp"
-        android:layout_marginStart="84dp"
-        android:layout_marginEnd="79dp"
-        android:layout_marginBottom="14dp"
-        android:backgroundTint="#D6D6D6"
-        android:text="Highscore"
-        app:layout_constraintBottom_toTopOf="@+id/hjaelp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/startSpil" />
-
-    <Button
-        android:id="@+id/hjaelp"
-        android:layout_width="142dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="134dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="144dp"
-        android:backgroundTint="#D6D6D6"
-        android:text="Hjælp"
+    <LinearLayout
+        android:layout_width="246dp"
+        android:layout_height="236dp"
+        android:layout_marginTop="7dp"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/highScore" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        app:layout_constraintVertical_bias="0.217">
 
-    <Button
-        android:id="@+id/indstillinger"
-        android:layout_width="142dp"
-        android:layout_height="51dp"
-        android:layout_marginStart="134dp"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="135dp"
-        android:layout_marginBottom="80dp"
-        android:background="#D6D6D6"
-        android:text="Indstillinger"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/hjaelp" />
+        <Button
+            android:id="@+id/startSpil"
+            android:layout_width="248dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#D6D6D6"
+            android:text="Start spil" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="64dp"
-        android:layout_height="53dp"
-        android:layout_marginTop="78dp"
-        android:layout_marginEnd="70dp"
-        android:layout_marginBottom="78dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/indstillinger"
-        app:layout_constraintTop_toBottomOf="@+id/highScore"
-        app:srcCompat="@drawable/settings" />
+        <Button
+            android:id="@+id/highScore"
+            android:layout_width="248dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#D6D6D6"
+            android:text="Highscore" />
+
+        <Button
+            android:id="@+id/indstillinger"
+            android:layout_width="match_parent"
+            android:layout_height="58dp"
+            android:backgroundTint="#D6D6D6"
+            android:text="Indstillinger" />
+
+        <Button
+            android:id="@+id/hjaelp"
+            android:layout_width="248dp"
+            android:layout_height="58dp"
+            android:backgroundTint="#D6D6D6"
+            android:text="Hjælp" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

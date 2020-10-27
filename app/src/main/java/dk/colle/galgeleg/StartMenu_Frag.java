@@ -40,7 +40,7 @@ public class StartMenu_Frag extends Fragment implements View.OnClickListener {
         if (v == startSpil){
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new StartSpil_frag())
+                    .replace(R.id.fragmentView, new Inden_StartSpil_Frag())
                     .addToBackStack(null)
                     .commit();
         }
@@ -51,7 +51,11 @@ public class StartMenu_Frag extends Fragment implements View.OnClickListener {
             //getFragmentManager().beginTransaction().add().commit();
         }
         if (v == highScore){
-            //getFragmentManager().beginTransaction().add().commit();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .replace(R.id.fragmentView, new HighScore_Frag())
+                    .addToBackStack(null)
+                    .commit();
         }
     }
 

@@ -19,8 +19,9 @@ public class GalgeLogik {
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
+    StartSpil_frag spf;
 
-    public GalgeLogik() {
+    public GalgeLogik(StartSpil_frag spf) {
         muligeOrd.add("bil");
         muligeOrd.add("computer");
         muligeOrd.add("programmering");
@@ -31,6 +32,7 @@ public class GalgeLogik {
         muligeOrd.add("solsort");
         muligeOrd.add("nitten");
         nulstil();
+        this.spf = spf;
     }
 
 
@@ -105,9 +107,11 @@ public class GalgeLogik {
             System.out.println("Bogstavet var korrekt: " + bogstav);
         } else {
             // Vi gættede på et bogstav der ikke var i ordet.
+            spf.setNytGaettedeBogstaver(bogstav);
             sidsteBogstavVarKorrekt = false;
             System.out.println("Bogstavet var IKKE korrekt: " + bogstav);
             antalForkerteBogstaver = antalForkerteBogstaver + 1;
+            spf.setBillede(antalForkerteBogstaver);
             if (antalForkerteBogstaver > 6) {
                 spilletErTabt = true;
             }

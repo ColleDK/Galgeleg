@@ -15,10 +15,10 @@ public class HovedAktivitet extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoved_aktivitet);
 
-        if (savedInstanceState == null){
+        if (savedInstanceState == null) {
             Fragment fragment = new StartMenu_Frag();
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragmentView,fragment)
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragmentView, fragment)  // tom container i layout
                     .commit();
         }
 
