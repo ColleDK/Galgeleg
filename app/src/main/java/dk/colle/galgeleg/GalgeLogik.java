@@ -22,6 +22,7 @@ public class GalgeLogik {
     StartSpil_frag spf;
 
     public GalgeLogik(StartSpil_frag spf) {
+        this.spf = spf;
         muligeOrd.add("bil");
         muligeOrd.add("computer");
         muligeOrd.add("programmering");
@@ -32,7 +33,6 @@ public class GalgeLogik {
         muligeOrd.add("solsort");
         muligeOrd.add("nitten");
         nulstil();
-        this.spf = spf;
     }
 
 

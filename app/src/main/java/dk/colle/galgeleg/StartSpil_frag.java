@@ -10,7 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -65,10 +64,6 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         gaettedeBogstaverList.add(nytBogstav);
         adapter = new ArrayAdapter(getContext(), R.layout.gaettedebogstaver_element, R.id.bogstavGaettet_element, gaettedeBogstaverList);
         listView.setAdapter(adapter);
-    }
-
-    public void setRigtigtOrd(String ord){
-        //rigtigtOrd.setText(ord);
     }
 
 
