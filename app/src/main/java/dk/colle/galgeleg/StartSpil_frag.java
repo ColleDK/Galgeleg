@@ -96,6 +96,9 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
     }
 
     public void vundet(){
+        /**
+         * https://stackoverflow.com/questions/6464080/how-to-play-mp3-file-in-raw-folder-as-notification-sound-alert-in-android
+         */
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.cheer);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(false);
@@ -105,10 +108,13 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.start();
 
 
+        /**
+         * https://stackoverflow.com/questions/16036572/how-to-pass-values-between-fragments
+         */
         Bundle bundle = new Bundle();
         bundle.putString("harVundet","Du har vundet");
-        bundle.putString("antalGættede",gaettedeBogstaverList.size()+"");
-        bundle.putString("rigtigtOrd",rigtigtOrd.getText()+"");
+        bundle.putString("rigtigtOrd","Ordet var: " + rigtigtOrd.getText()+"");
+        bundle.putString("antalGættede","Du gættede " + gaettedeBogstaverList.size()+" gange forkert");
 
         Fragment fragment = new VundetTabt_Frag();
         fragment.setArguments(bundle);
@@ -127,16 +133,20 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
 
-        getFragmentManager().beginTransaction().replace(R.id.startSpil_fragmentBox,new VundetTabt_Frag())
+        Bundle bundle = new Bundle();
+        bundle.putString("harVundet","Du vandet ikke");
+        bundle.putString("rigtigtOrd","Det rigtige ord var " + rigtigtOrd.getText()+"");
+
+        Fragment fragment = new VundetTabt_Frag();
+        fragment.setArguments(bundle);
+
+        getFragmentManager().beginTransaction().replace(R.id.startSpil_fragmentBox,fragment)
                 .addToBackStack(null)
                 .commit();
 
     }
 
     public void playWrongSound(){
-        /**
-         * https://stackoverflow.com/questions/6464080/how-to-play-mp3-file-in-raw-folder-as-notification-sound-alert-in-android
-         */
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.buzzer);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(false);

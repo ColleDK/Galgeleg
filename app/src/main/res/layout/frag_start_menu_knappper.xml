@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/startSpil"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:backgroundTint="#D6D6D6"
+        android:text="Start spil" />
+
+    <Button
+        android:id="@+id/highScore"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:backgroundTint="#D6D6D6"
+        android:text="Highscore" />
+
+    <Button
+        android:id="@+id/indstillinger"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:backgroundTint="#D6D6D6"
+        android:text="Indstillinger" />
+
+    <Button
+        android:id="@+id/hjaelp"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:backgroundTint="#D6D6D6"
+        android:text="Hjælp" />
+
+</LinearLayout>

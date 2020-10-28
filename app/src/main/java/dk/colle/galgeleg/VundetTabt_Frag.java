@@ -21,11 +21,18 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
             vundetTabt.setText(bundle.getString("harVundet"));
 
             gaettetOrd = rod.findViewById(R.id.spilSlut_OrdetVar);
-            gaettetOrd.setText("Ordet var: " + bundle.getString("rigtigtOrd"));
+            gaettetOrd.setText(bundle.getString("rigtigtOrd"));
 
             antalForsoeg = rod.findViewById(R.id.spilSlut_AntalForsøg);
-            antalForsoeg.setText("Du gættede " + bundle.getString("antalGættede") + " gange forkert");
+            if (antalForsoeg != null) {
+                antalForsoeg.setText(bundle.getString("antalGættede"));
+            }
         }
+
+        getFragmentManager().beginTransaction().replace(R.id.spilSlut_nytSpilBox, new StartMenu_knapper_Frag())
+                .addToBackStack(null)
+                .commit();
+
 
         return rod;
     }
