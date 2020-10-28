@@ -5,14 +5,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/ordDerBliverGaettetPaa2"
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:background="#5277FF"
+        android:gravity="center"
+        android:text="TextView"
+        android:textColor="#FFFFFF"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <ImageView
         android:id="@+id/galgebillede"
         android:layout_width="315dp"
         android:layout_height="286dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginTop="84dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ordDerBliverGaettetPaa2"
         app:srcCompat="@drawable/galge" />
 
     <ListView

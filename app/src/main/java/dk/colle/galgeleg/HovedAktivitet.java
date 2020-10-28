@@ -22,7 +22,7 @@ public class HovedAktivitet extends AppCompatActivity {
                     .commit();
         }
 
-        setTitle("Hejsa");
+        setTitle("'Galgeleg'");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     }

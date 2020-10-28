@@ -35,40 +35,6 @@ public class GalgeLogik {
         nulstil();
     }
 
-
-    public ArrayList<String> getBrugteBogstaver() {
-        return brugteBogstaver;
-    }
-
-    public String getSynligtOrd() {
-        return synligtOrd;
-    }
-
-    public String getOrdet() {
-        return ordet;
-    }
-
-    public int getAntalForkerteBogstaver() {
-        return antalForkerteBogstaver;
-    }
-
-    public boolean erSidsteBogstavKorrekt() {
-        return sidsteBogstavVarKorrekt;
-    }
-
-    public boolean erSpilletVundet() {
-        return spilletErVundet;
-    }
-
-    public boolean erSpilletTabt() {
-        return spilletErTabt;
-    }
-
-    public boolean erSpilletSlut() {
-        return spilletErTabt || spilletErVundet;
-    }
-
-
     public void nulstil() {
         brugteBogstaver.clear();
         antalForkerteBogstaver = 0;
@@ -92,11 +58,11 @@ public class GalgeLogik {
                 spilletErVundet = false;
             }
         }
+        spf.setRigtigtOrd(synligtOrd);
     }
 
     public void gætBogstav(String bogstav) {
         if (bogstav.length() != 1) return;
-        System.out.println("Der gættes på bogstavet: " + bogstav);
         if (brugteBogstaver.contains(bogstav)) return;
         if (spilletErVundet || spilletErTabt) return;
 
@@ -104,32 +70,26 @@ public class GalgeLogik {
 
         if (ordet.contains(bogstav)) {
             sidsteBogstavVarKorrekt = true;
-            System.out.println("Bogstavet var korrekt: " + bogstav);
+            spf.playCorrectSound();
         } else {
             // Vi gættede på et bogstav der ikke var i ordet.
-            spf.setNytGaettedeBogstaver(bogstav);
             sidsteBogstavVarKorrekt = false;
-            System.out.println("Bogstavet var IKKE korrekt: " + bogstav);
             antalForkerteBogstaver = antalForkerteBogstaver + 1;
-            spf.setBillede(antalForkerteBogstaver);
             if (antalForkerteBogstaver > 6) {
+                spf.tabt();
                 spilletErTabt = true;
+            }
+            else{
+                spf.setNytGaettedeBogstaver(bogstav);
+                spf.playWrongSound();
+                spf.setBillede(antalForkerteBogstaver);
             }
         }
         opdaterSynligtOrd();
+        if (spilletErVundet){
+            spf.vundet();
+        }
     }
-
-    public void logStatus() {
-        System.out.println("---------- ");
-        System.out.println("- ordet (skjult) = " + ordet);
-        System.out.println("- synligtOrd = " + synligtOrd);
-        System.out.println("- forkerteBogstaver = " + antalForkerteBogstaver);
-        System.out.println("- brugeBogstaver = " + brugteBogstaver);
-        if (spilletErTabt) System.out.println("- SPILLET ER TABT");
-        if (spilletErVundet) System.out.println("- SPILLET ER VUNDET");
-        System.out.println("---------- ");
-    }
-
 
     public static String hentUrl(String url) throws IOException {
         System.out.println("Henter data fra " + url);
