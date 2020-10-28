@@ -50,7 +50,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
          */
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         Map<String, String> map;
-        int count = antalgaettet.size();
+        int count = Math.min(ord.size(),antalgaettet.size());
         for(int k = 0; k < count; k++) {
             map = new HashMap<String, String>();
             map.put("ord", ord.toArray()[k]+"");
