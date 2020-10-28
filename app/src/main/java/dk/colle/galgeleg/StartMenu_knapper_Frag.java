@@ -40,7 +40,7 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
         if (v == startSpil){
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new Inden_StartSpil_Frag())
+                    .replace(R.id.fragmentView, new StartSpil_frag())
                     .addToBackStack(null)
                     .commit();
         }

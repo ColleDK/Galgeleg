@@ -21,27 +21,27 @@ import java.util.Set;
 public class HighScore_Frag extends Fragment implements View.OnClickListener{
     ListView listview;
     SharedPreferences prefs;
-    Set<String> tider;
+    Set<String> antalgaettet;
     Set<String> ord;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         View root = i.inflate(R.layout.frag_highscore,container,false);
 
-        prefs = PreferenceManager.getDefaultSharedPreferences(getContext());
+        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        tider = prefs.getStringSet("tider",new ArraySet<String>());
+        antalgaettet = prefs.getStringSet("antalgaettet",new ArraySet<String>());
         ord = prefs.getStringSet("ord",new ArraySet<String>());
-
-//        ord.add("Biler");
-//        tider.add("11:30");
-//        prefs.edit().putStringSet("ord",ord).apply();
-//        prefs.edit().putStringSet("tider",tider).apply();
-
-        //prefs.edit().clear().apply();
 
         listview = root.findViewById(R.id.highscoreListeView);
         SimpleAdapter adapter;
+
+        for (String s: ord) {
+            System.out.println(s);
+        }
+        for (String s: antalgaettet) {
+            System.out.println(s);
+        }
 
 
         /**
@@ -50,15 +50,15 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
          */
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         Map<String, String> map;
-        int count = tider.size();
+        int count = antalgaettet.size();
         for(int k = 0; k < count; k++) {
             map = new HashMap<String, String>();
-            map.put("ord", "Gættet ord var: " + ord.toArray()[k]);
-            map.put("tider", "Tiden for at gætte var: " + tider.toArray()[k]);
+            map.put("ord", ord.toArray()[k]+"");
+            map.put("antalgaettet",antalgaettet.toArray()[k]+"");
             list.add(map);
         }
 
-        adapter = new SimpleAdapter(getContext(), list, R.layout.highscore_liste_element, new String[] { "ord", "tider" }, new int[] { R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid });
+        adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[] { "ord", "antalgaettet" }, new int[] { R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid });
         listview.setAdapter(adapter);
 
         return root;

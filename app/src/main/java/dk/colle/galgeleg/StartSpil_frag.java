@@ -114,12 +114,12 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putString("harVundet","Du har vundet");
         bundle.putString("rigtigtOrd","Ordet var: " + rigtigtOrd.getText()+"");
-        bundle.putString("antalGættede","Du gættede " + gaettedeBogstaverList.size()+" gange forkert");
+        bundle.putString("antalGættede","Du gættede " + gaettedeBogstaverList.size()+" gang(e) forkert");
 
         Fragment fragment = new VundetTabt_Frag();
         fragment.setArguments(bundle);
 
-        getFragmentManager().beginTransaction().replace(R.id.startSpil_fragmentBox,fragment)
+        getFragmentManager().beginTransaction().replace(R.id.fragmentView,fragment)
                 .addToBackStack(null)
                 .commit();
     }
@@ -140,7 +140,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         Fragment fragment = new VundetTabt_Frag();
         fragment.setArguments(bundle);
 
-        getFragmentManager().beginTransaction().replace(R.id.startSpil_fragmentBox,fragment)
+        getFragmentManager().beginTransaction().replace(R.id.fragmentView,fragment)
                 .addToBackStack(null)
                 .commit();
 
