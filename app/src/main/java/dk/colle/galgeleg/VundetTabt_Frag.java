@@ -40,6 +40,10 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
 
                 prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
+                /**
+                 * https://stackoverflow.com/questions/5134466/how-to-cast-arraylist-from-list/41136009
+                 */
+
                 String ordSomString = prefs.getString("ord", "");
                 ord = new ArrayList<>(Arrays.asList(ordSomString.split(",")));
 
