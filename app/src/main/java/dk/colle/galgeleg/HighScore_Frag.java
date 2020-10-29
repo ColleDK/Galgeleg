@@ -13,6 +13,7 @@ import android.widget.SimpleAdapter;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,8 +22,8 @@ import java.util.Set;
 public class HighScore_Frag extends Fragment implements View.OnClickListener{
     ListView listview;
     SharedPreferences prefs;
-    Set<String> antalgaettet;
-    Set<String> ord;
+    List<String> antalgaettet;
+    List<String> ord;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +31,14 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        antalgaettet = prefs.getStringSet("antalgaettet",new ArraySet<String>());
-        ord = prefs.getStringSet("ord",new ArraySet<String>());
+        prefs.edit().clear().apply();
+
+        String ordSomString = prefs.getString("ord", "");
+        ord = Arrays.asList(ordSomString.split(","));
+
+        String antalGættetSomString = prefs.getString("antalgaettet", "");
+        antalgaettet = Arrays.asList(antalGættetSomString.split(","));
+
 
         listview = root.findViewById(R.id.highscoreListeView);
         SimpleAdapter adapter;

@@ -11,13 +11,16 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
     TextView vundetTabt, gaettetOrd, antalForsoeg;
     SharedPreferences prefs;
-    Set<String> antalgaettet;
-    Set<String> ord;
+    List<String> antalgaettet;
+    List<String> ord;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_vundettabt_spil,container,false);
@@ -35,10 +38,14 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
             if (antalForsoeg != null) {
                 antalForsoeg.setText(bundle.getString("antalGættede"));
 
-
                 prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-                antalgaettet = prefs.getStringSet("antalgaettet",new ArraySet<String>());
-                ord = prefs.getStringSet("ord",new ArraySet<String>());
+
+                String ordSomString = prefs.getString("ord", "");
+                ord = Arrays.asList(ordSomString.split(","));
+
+                String antalGættetSomString = prefs.getString("antalgaettet", "");
+                antalgaettet = Arrays.asList(antalGættetSomString.split(","));
+
 
                 antalgaettet.add(bundle.getString("antalGættede"));
                 ord.add(bundle.getString("rigtigtOrd"));
@@ -50,8 +57,8 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
                 prefs.edit().remove("ord").apply();
                 prefs.edit().remove("antalgaettet").apply();
 
-                prefs.edit().putStringSet("ord",ord).apply();
-                prefs.edit().putStringSet("antalgaettet",antalgaettet).apply();
+                prefs.edit().putString("ord",ord.toString()).apply();
+                prefs.edit().putString("antalgaettet",antalgaettet.toString()).apply();
             }
         }
 

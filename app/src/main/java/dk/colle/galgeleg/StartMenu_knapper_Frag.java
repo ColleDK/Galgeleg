@@ -48,7 +48,11 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
             //getFragmentManager().beginTransaction().add().commit();
         }
         if (v == hjaelp){
-            //getFragmentManager().beginTransaction().add().commit();
+            getFragmentManager().beginTransaction()
+                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
+                    .replace(R.id.fragmentView, new Hjaelp_Frag())
+                    .addToBackStack(null)
+                    .commit();
         }
         if (v == highScore){
             getFragmentManager().beginTransaction()
