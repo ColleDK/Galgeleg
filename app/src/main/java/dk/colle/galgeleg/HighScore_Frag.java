@@ -31,7 +31,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-        prefs.edit().clear().apply();
+        //prefs.edit().clear().apply();
 
         String ordSomString = prefs.getString("ord", "");
         ord = Arrays.asList(ordSomString.split(","));
@@ -39,16 +39,19 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         String antalGættetSomString = prefs.getString("antalgaettet", "");
         antalgaettet = Arrays.asList(antalGættetSomString.split(","));
 
+        for (int j=0; j<ord.size(); j++) {
+            String replaceLetters  = ord.get(j);
+            replaceLetters = replaceLetters.replaceAll("]","");
+            ord.set(j, replaceLetters);
+            String replaceLetters2  = antalgaettet.get(j);
+            replaceLetters2 = replaceLetters2.replaceAll("]","");
+            antalgaettet.set(j, replaceLetters2);
+        }
+
 
         listview = root.findViewById(R.id.highscoreListeView);
         SimpleAdapter adapter;
 
-        for (String s: ord) {
-            System.out.println(s);
-        }
-        for (String s: antalgaettet) {
-            System.out.println(s);
-        }
 
 
         /**
@@ -58,7 +61,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         Map<String, String> map;
         int count = Math.min(ord.size(),antalgaettet.size());
-        for(int k = 0; k < count; k++) {
+        for(int k = 1; k < count; k++) {
             map = new HashMap<String, String>();
             map.put("ord", ord.toArray()[k]+"");
             map.put("antalgaettet",antalgaettet.toArray()[k]+"");

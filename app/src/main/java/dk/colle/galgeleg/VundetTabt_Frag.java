@@ -19,8 +19,8 @@ import java.util.Set;
 public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
     TextView vundetTabt, gaettetOrd, antalForsoeg;
     SharedPreferences prefs;
-    List<String> antalgaettet;
-    List<String> ord;
+    ArrayList<String> antalgaettet;
+    ArrayList<String> ord;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_vundettabt_spil,container,false);
@@ -41,10 +41,10 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
                 prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
                 String ordSomString = prefs.getString("ord", "");
-                ord = Arrays.asList(ordSomString.split(","));
+                ord = new ArrayList<>(Arrays.asList(ordSomString.split(",")));
 
                 String antalGættetSomString = prefs.getString("antalgaettet", "");
-                antalgaettet = Arrays.asList(antalGættetSomString.split(","));
+                antalgaettet = new ArrayList<>(Arrays.asList(antalGættetSomString.split(",")));
 
 
                 antalgaettet.add(bundle.getString("antalGættede"));
@@ -59,6 +59,10 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
 
                 prefs.edit().putString("ord",ord.toString()).apply();
                 prefs.edit().putString("antalgaettet",antalgaettet.toString()).apply();
+
+                antalgaettet.clear();
+                ord.clear();
+
             }
         }
 

@@ -34,8 +34,6 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         billede = rod.findViewById(R.id.galgebillede);
         billede.setImageResource(R.drawable.galge);
 
-        System.out.println("Hej");
-
         gaetBogstav = rod.findViewById(R.id.bogstav);
         gaetBogstav.setText("Indtast bogstav her");
 
