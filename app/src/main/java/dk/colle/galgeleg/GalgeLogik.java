@@ -75,30 +75,34 @@ public class GalgeLogik {
         if (bogstav.length() != 1) return;
         if (brugteBogstaver.contains(bogstav)) return;
         if (spilletErVundet || spilletErTabt) return;
+        /**
+         * https://stackoverflow.com/questions/34855046/check-if-input-is-one-single-letter-java
+         */
+        if (bogstav.matches("[A-Za-z]{1}")) {
+            brugteBogstaver.add(bogstav);
 
-        brugteBogstaver.add(bogstav);
-
-        if (ordet.contains(bogstav)) {
-            sidsteBogstavVarKorrekt = true;
-            spf.playCorrectSound();
-        } else {
-            // Vi gættede på et bogstav der ikke var i ordet.
-            sidsteBogstavVarKorrekt = false;
-            antalForkerteBogstaver = antalForkerteBogstaver + 1;
-            if (antalForkerteBogstaver > 6) {
-                spf.setRigtigtOrd(ordet);
-                spf.tabt();
-                spilletErTabt = true;
+            if (ordet.contains(bogstav)) {
+                sidsteBogstavVarKorrekt = true;
+                spf.playCorrectSound();
+            } else {
+                // Vi gættede på et bogstav der ikke var i ordet.
+                sidsteBogstavVarKorrekt = false;
+                antalForkerteBogstaver = antalForkerteBogstaver + 1;
+                if (antalForkerteBogstaver > 6) {
+                    spf.setRigtigtOrd(ordet);
+                    spf.tabt();
+                    spilletErTabt = true;
+                }
+                else{
+                    spf.setNytGaettedeBogstaver(bogstav,antalForkerteBogstaver);
+                    spf.playWrongSound();
+                    spf.setBillede(antalForkerteBogstaver);
+                }
             }
-            else{
-                spf.setNytGaettedeBogstaver(bogstav,antalForkerteBogstaver);
-                spf.playWrongSound();
-                spf.setBillede(antalForkerteBogstaver);
+            opdaterSynligtOrd();
+            if (spilletErVundet){
+                spf.vundet(antalForkerteBogstaver);
             }
-        }
-        opdaterSynligtOrd();
-        if (spilletErVundet){
-            spf.vundet(antalForkerteBogstaver);
         }
     }
 

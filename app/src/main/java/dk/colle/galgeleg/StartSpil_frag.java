@@ -26,7 +26,6 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
     EditText gaetBogstav;
     TextView rigtigtOrd;
     Button gaet, forkert1, forkert2, forkert3, forkert4, forkert5, forkert6;
-    ArrayList<String> gaettedeBogstaverList = new ArrayList<>();
 
 
     @Override
@@ -63,7 +62,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (v == gaet) {
-            logik.gætBogstav(gaetBogstav.getText().toString());
+            logik.gætBogstav(gaetBogstav.getText().toString().toLowerCase());
             gaetBogstav.setText("");
         }
         else if (v == gaetBogstav){
