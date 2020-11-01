@@ -98,7 +98,7 @@ public class GalgeLogik {
         }
         opdaterSynligtOrd();
         if (spilletErVundet){
-            spf.vundet();
+            spf.vundet(antalForkerteBogstaver);
         }
     }
 

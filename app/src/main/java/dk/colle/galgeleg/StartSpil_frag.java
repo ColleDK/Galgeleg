@@ -123,7 +123,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void vundet(){
+    public void vundet(int antalFejl){
         /**
          * https://stackoverflow.com/questions/6464080/how-to-play-mp3-file-in-raw-folder-as-notification-sound-alert-in-android
          */
@@ -142,7 +142,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putString("harVundet","Du har vundet");
         bundle.putString("rigtigtOrd","Ordet var: " + rigtigtOrd.getText()+"");
-        bundle.putString("antalGættede","Du gættede kun " + gaettedeBogstaverList.size()+" gang(e) forkert");
+        bundle.putString("antalGættede","Du gættede kun " + antalFejl +" gang(e) forkert");
 
         Fragment fragment = new VundetTabt_Frag();
         fragment.setArguments(bundle);
