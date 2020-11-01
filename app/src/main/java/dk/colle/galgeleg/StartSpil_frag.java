@@ -187,4 +187,25 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.start();
     }
 
+    public void playCheatingSound(){
+        MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.cheating);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
+    public void playSmoke(){
+        MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.smoke);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
+    public void playDenied(){
+        MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.denied);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
 }

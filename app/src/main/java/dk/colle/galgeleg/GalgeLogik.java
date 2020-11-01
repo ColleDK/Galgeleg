@@ -72,6 +72,21 @@ public class GalgeLogik {
     }
 
     public void gætBogstav(String bogstav) {
+        // some easter eggs 0-0
+        if (bogstav.equals("showmetheway")){
+            bogstavHint();
+            spf.playCheatingSound();
+        }
+        if (bogstav.equals("420")){
+            spf.playSmoke();
+        }
+        if (bogstav.equals("plsletmein")){
+            spf.playDenied();
+        }
+
+
+
+
         if (bogstav.length() != 1) return;
         if (brugteBogstaver.contains(bogstav)) return;
         if (spilletErVundet || spilletErTabt) return;
@@ -178,5 +193,18 @@ public class GalgeLogik {
 
         System.out.println("muligeOrd = " + muligeOrd);
         nulstil();
+    }
+
+    public void bogstavHint(){
+        for (int i = 0; i < ordet.length(); i++) {
+            if (!brugteBogstaver.contains(ordet.charAt(i)+"")){
+                brugteBogstaver.add(ordet.charAt(i)+"");
+                opdaterSynligtOrd();
+                if (spilletErVundet){
+                    spf.vundet(antalForkerteBogstaver);
+                }
+                break;
+            }
+        }
     }
 }
