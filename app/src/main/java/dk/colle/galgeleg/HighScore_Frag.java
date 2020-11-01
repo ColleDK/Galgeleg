@@ -67,7 +67,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
 
                 System.out.println(antalgaettet.get(j));
 
-                if (Integer.parseInt(replaceLetters1.charAt(9) + "") > Integer.parseInt(replaceLetters2.charAt(9) + "")) {
+                if (Integer.parseInt(replaceLetters1.charAt(13) + "") > Integer.parseInt(replaceLetters2.charAt(13) + "")) {
                     String temp1 = antalgaettet.get(j);
                     String temp2 = ord.get(j);
 

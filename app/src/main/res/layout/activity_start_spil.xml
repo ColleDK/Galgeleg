@@ -28,41 +28,88 @@
         app:layout_constraintTop_toBottomOf="@+id/ordDerBliverGaettetPaa2"
         app:srcCompat="@drawable/galge" />
 
-    <ListView
-        android:id="@+id/gaettedeBogstaver"
-        android:layout_width="376dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="24dp"
+    <LinearLayout
+        android:id="@+id/gaettedeBogstaverLayout"
+        android:layout_width="414dp"
+        android:layout_height="59dp"
+        android:layout_marginTop="11dp"
+        android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/galgebillede" />
+        app:layout_constraintTop_toBottomOf="@+id/galgebillede">
+
+        <Button
+            android:id="@+id/forkert1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/forkert2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/forkert3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/forkert4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/forkert5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/forkert6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Button"
+            android:visibility="invisible" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/gaet"
         android:layout_width="122dp"
-        android:layout_height="55dp"
-        android:layout_marginEnd="32dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:text="Gæt"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintHorizontal_bias="0.058"
         app:layout_constraintStart_toEndOf="@+id/bogstav"
-        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver"
-        app:layout_constraintVertical_bias="0.123" />
+        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaverLayout" />
 
     <EditText
         android:id="@+id/bogstav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Indtast et bogstav her"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver"
-        app:layout_constraintVertical_bias="0.16" />
+        app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaverLayout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,10 +25,8 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
     ImageView billede;
     EditText gaetBogstav;
     TextView rigtigtOrd;
-    Button gaet;
-    ListView listView;
+    Button gaet, forkert1, forkert2, forkert3, forkert4, forkert5, forkert6;
     ArrayList<String> gaettedeBogstaverList = new ArrayList<>();
-    ArrayAdapter adapter;
 
 
     @Override
@@ -41,7 +41,13 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         gaet = rod.findViewById(R.id.gaet);
         gaet.setText("Gæt på bogstav");
 
-        listView = rod.findViewById(R.id.gaettedeBogstaver);
+        forkert1 = rod.findViewById(R.id.forkert1);
+        forkert2 = rod.findViewById(R.id.forkert2);
+        forkert3 = rod.findViewById(R.id.forkert3);
+        forkert4 = rod.findViewById(R.id.forkert4);
+        forkert5 = rod.findViewById(R.id.forkert5);
+        forkert6 = rod.findViewById(R.id.forkert6);
+
 
         rigtigtOrd = rod.findViewById(R.id.ordDerBliverGaettetPaa2);
 
@@ -65,10 +71,33 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         }
     }
 
-    public void setNytGaettedeBogstaver(String nytBogstav){
-        gaettedeBogstaverList.add(nytBogstav);
-        adapter = new ArrayAdapter(getContext(), R.layout.gaettedebogstaver_element, R.id.bogstavGaettet_element, gaettedeBogstaverList);
-        listView.setAdapter(adapter);
+    public void setNytGaettedeBogstaver(String nytBogstav, int antalForkerte){
+        switch (antalForkerte) {
+            case 1:
+                forkert1.setText(nytBogstav);
+                forkert1.setVisibility(View.VISIBLE);
+                break;
+            case 2:
+                forkert2.setText(nytBogstav);
+                forkert2.setVisibility(View.VISIBLE);
+                break;
+            case 3:
+                forkert3.setText(nytBogstav);
+                forkert3.setVisibility(View.VISIBLE);
+                break;
+            case 4:
+                forkert4.setText(nytBogstav);
+                forkert4.setVisibility(View.VISIBLE);
+                break;
+            case 5:
+                forkert5.setText(nytBogstav);
+                forkert5.setVisibility(View.VISIBLE);
+                break;
+            case 6:
+                forkert6.setText(nytBogstav);
+                forkert6.setVisibility(View.VISIBLE);
+                break;
+        }
     }
 
 
@@ -113,7 +142,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         Bundle bundle = new Bundle();
         bundle.putString("harVundet","Du har vundet");
         bundle.putString("rigtigtOrd","Ordet var: " + rigtigtOrd.getText()+"");
-        bundle.putString("antalGættede","Du gættede " + gaettedeBogstaverList.size()+" gang(e) forkert");
+        bundle.putString("antalGættede","Du gættede kun " + gaettedeBogstaverList.size()+" gang(e) forkert");
 
         Fragment fragment = new VundetTabt_Frag();
         fragment.setArguments(bundle);
@@ -133,7 +162,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.start();
 
         Bundle bundle = new Bundle();
-        bundle.putString("harVundet","Du vandet ikke");
+        bundle.putString("harVundet","Du vandt ikke");
         bundle.putString("rigtigtOrd","Det rigtige ord var " + rigtigtOrd.getText()+"");
 
         Fragment fragment = new VundetTabt_Frag();

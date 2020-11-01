@@ -91,7 +91,7 @@ public class GalgeLogik {
                 spilletErTabt = true;
             }
             else{
-                spf.setNytGaettedeBogstaver(bogstav);
+                spf.setNytGaettedeBogstaver(bogstav,antalForkerteBogstaver);
                 spf.playWrongSound();
                 spf.setBillede(antalForkerteBogstaver);
             }
