@@ -21,6 +21,7 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
     SharedPreferences prefs;
     ArrayList<String> antalgaettet = new ArrayList<>();
     ArrayList<String> ord = new ArrayList<>();
+    Bundle gammelBundle;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_vundettabt_spil,container,false);
@@ -38,45 +39,46 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
             if (antalForsoeg != null) {
                 antalForsoeg.setText(bundle.getString("antalGættede"));
 
-                prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+                if (bundle != gammelBundle) {
+                    gammelBundle = bundle;
+                    prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
-                /**
-                 * https://stackoverflow.com/questions/5134466/how-to-cast-arraylist-from-list/41136009
-                 */
+                    /**
+                     * https://stackoverflow.com/questions/5134466/how-to-cast-arraylist-from-list/41136009
+                     */
 
-                String ordSomString = prefs.getString("ord", "");
-                //assert ordSomString != null;
-                ord = new ArrayList<>(Arrays.asList(ordSomString.split(",")));
+                    String ordSomString = prefs.getString("ord", "");
+                    ord = new ArrayList<>(Arrays.asList(ordSomString.split(",")));
 
-                String antalGættetSomString = prefs.getString("antalgaettet", "");
-                //assert antalGættetSomString != null;
-                antalgaettet = new ArrayList<>(Arrays.asList(antalGættetSomString.split(",")));
+                    String antalGættetSomString = prefs.getString("antalgaettet", "");
+                    antalgaettet = new ArrayList<>(Arrays.asList(antalGættetSomString.split(",")));
 
-                for (int j=1; j<ord.size(); j++) {
-                    String replaceLetters  = ord.get(j);
-                    replaceLetters = replaceLetters.replaceAll("]","");
-                    ord.set(j, replaceLetters);
-                    String replaceLetters2  = antalgaettet.get(j);
-                    replaceLetters2 = replaceLetters2.replaceAll("]","");
-                    antalgaettet.set(j, replaceLetters2);
+                    for (int j = 1; j < ord.size(); j++) {
+                        String replaceLetters = ord.get(j);
+                        replaceLetters = replaceLetters.replaceAll("]", "");
+                        ord.set(j, replaceLetters);
+                        String replaceLetters2 = antalgaettet.get(j);
+                        replaceLetters2 = replaceLetters2.replaceAll("]", "");
+                        antalgaettet.set(j, replaceLetters2);
+                    }
+
+
+                    antalgaettet.add(bundle.getString("antalGættede"));
+                    ord.add(bundle.getString("rigtigtOrd"));
+
+                    /**
+                     * https://stackoverflow.com/questions/17469583/setstring-in-android-sharedpreferences-does-not-save-on-force-close
+                     */
+
+                    prefs.edit().remove("ord").apply();
+                    prefs.edit().remove("antalgaettet").apply();
+
+                    prefs.edit().putString("ord", ord.toString()).apply();
+                    prefs.edit().putString("antalgaettet", antalgaettet.toString()).apply();
+
+                    antalgaettet.clear();
+                    ord.clear();
                 }
-
-
-                antalgaettet.add(bundle.getString("antalGættede"));
-                ord.add(bundle.getString("rigtigtOrd"));
-
-                /**
-                 * https://stackoverflow.com/questions/17469583/setstring-in-android-sharedpreferences-does-not-save-on-force-close
-                 */
-
-                prefs.edit().remove("ord").apply();
-                prefs.edit().remove("antalgaettet").apply();
-
-                prefs.edit().putString("ord",ord.toString()).apply();
-                prefs.edit().putString("antalgaettet",antalgaettet.toString()).apply();
-
-                antalgaettet.clear();
-                ord.clear();
             }
         }
 

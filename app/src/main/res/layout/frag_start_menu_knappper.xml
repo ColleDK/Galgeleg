@@ -21,13 +21,6 @@
         android:text="Highscore" />
 
     <Button
-        android:id="@+id/indstillinger"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:backgroundTint="#D6D6D6"
-        android:text="Indstillinger" />
-
-    <Button
         android:id="@+id/hjaelp"
         android:layout_width="match_parent"
         android:layout_height="58dp"

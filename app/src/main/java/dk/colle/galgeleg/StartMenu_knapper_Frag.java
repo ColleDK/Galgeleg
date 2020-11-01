@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 public class StartMenu_knapper_Frag extends Fragment implements View.OnClickListener {
-    Button startSpil, indstillinger, highScore, hjaelp;
+    Button startSpil, highScore, hjaelp;
 
 
     @Override
@@ -18,9 +18,6 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
         startSpil = rod.findViewById(R.id.startSpil);
         startSpil.setText("Start spil");
 
-        indstillinger = rod.findViewById(R.id.indstillinger);
-        indstillinger.setText("Indstillinger");
-
         highScore = rod.findViewById(R.id.highScore);
         highScore.setText("High score liste");
 
@@ -28,7 +25,6 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
         hjaelp.setText("Hjælp");
 
         startSpil.setOnClickListener(this);
-        indstillinger.setOnClickListener(this);
         highScore.setOnClickListener(this);
         hjaelp.setOnClickListener(this);
 
@@ -43,9 +39,6 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
                     .replace(R.id.fragmentView, new StartSpil_frag())
                     .addToBackStack(null)
                     .commit();
-        }
-        if (v == indstillinger){
-            //getFragmentManager().beginTransaction().add().commit();
         }
         if (v == hjaelp){
             getFragmentManager().beginTransaction()

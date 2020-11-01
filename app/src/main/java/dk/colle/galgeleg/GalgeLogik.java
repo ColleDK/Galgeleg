@@ -24,14 +24,14 @@ public class GalgeLogik {
     public GalgeLogik(StartSpil_frag spf) {
         this.spf = spf;
         muligeOrd.add("bil");
-        muligeOrd.add("computer");
-        muligeOrd.add("programmering");
-        muligeOrd.add("motorvej");
-        muligeOrd.add("busrute");
-        muligeOrd.add("gangsti");
-        muligeOrd.add("skovsnegl");
-        muligeOrd.add("solsort");
-        muligeOrd.add("nitten");
+//        muligeOrd.add("computer");
+//        muligeOrd.add("programmering");
+//        muligeOrd.add("motorvej");
+//        muligeOrd.add("busrute");
+//        muligeOrd.add("gangsti");
+//        muligeOrd.add("skovsnegl");
+//        muligeOrd.add("solsort");
+//        muligeOrd.add("nitten");
         nulstil();
     }
 

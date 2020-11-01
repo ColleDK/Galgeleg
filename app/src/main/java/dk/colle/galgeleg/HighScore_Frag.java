@@ -35,42 +35,51 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         //prefs.edit().clear().apply();
 
         String ordSomString = prefs.getString("ord", "");
-        System.out.println(ordSomString);
         ord = Arrays.asList(ordSomString.split(","));
+
 
         String antalGættetSomString = prefs.getString("antalgaettet", "");
         antalgaettet = Arrays.asList(antalGættetSomString.split(","));
 
-        for (int j=1; j<ord.size(); j++) {
-            String replaceLetters  = ord.get(j);
-            replaceLetters = replaceLetters.replaceAll("]","");
-            ord.set(j, replaceLetters);
-            String replaceLetters2  = antalgaettet.get(j);
-            replaceLetters2 = replaceLetters2.replaceAll("]","");
-            antalgaettet.set(j, replaceLetters2);
+
+        if (ord.size() != 1) {
+            for (int j = 1; j < ord.size(); j++) {
+                String replaceLetters = ord.get(j);
+                replaceLetters = replaceLetters.replaceAll("]", "");
+                replaceLetters = replaceLetters.substring(ord.size() - j);
+                ord.set(j, replaceLetters);
+
+                String replaceLetters2 = antalgaettet.get(j);
+                replaceLetters2 = replaceLetters2.replaceAll("]", "");
+                replaceLetters2 = replaceLetters2.substring(antalgaettet.size() - j);
+                antalgaettet.set(j, replaceLetters2);
+            }
         }
 
-        for (int j=1; j<ord.size()-1; j++) {
-            String replaceLetters1  = antalgaettet.get(j);
-            replaceLetters1 = replaceLetters1.replaceAll(" ","");
-            String replaceLetters2  = antalgaettet.get(j+1);
-            replaceLetters2 = replaceLetters2.replaceAll(" ","");
 
-            if (Integer.parseInt(replaceLetters1.charAt(9)+"") > Integer.parseInt(replaceLetters2.charAt(9)+"")){
-                String temp1 = antalgaettet.get(j);
-                System.out.println(temp1);
-                String temp2 = ord.get(j);
 
-                antalgaettet.set(j, antalgaettet.get(j+1));
-                System.out.println(ord.get(j));
-                ord.set(j, ord.get(j+1));
-                System.out.println(ord.get(j));
+        if (ord.size() != 1) {
+            for (int j = 1; j < ord.size() - 1; j++) {
+                String replaceLetters1 = antalgaettet.get(j);
+                String replaceLetters2 = antalgaettet.get(j + 1);
+                replaceLetters1 = replaceLetters1.replaceAll(" ", "");
+                replaceLetters2 = replaceLetters2.replaceAll(" ", "");
 
-                antalgaettet.set((j+1), temp1);
-                ord.set((j+1), temp2);
+                if (Integer.parseInt(replaceLetters1.charAt(9) + "") > Integer.parseInt(replaceLetters2.charAt(9) + "")) {
+                    String temp1 = antalgaettet.get(j);
+                    String temp2 = ord.get(j);
 
-                j=j-2;
-                if(j < 1){j=1;}
+                    antalgaettet.set(j, antalgaettet.get(j + 1));
+                    ord.set(j, ord.get(j + 1));
+
+                    antalgaettet.set((j + 1), temp1);
+                    ord.set((j + 1), temp2);
+
+                    j = j - 2;
+                    if (j < 1) {
+                        j = 1;
+                    }
+                }
             }
         }
 
@@ -101,6 +110,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         ord = new ArrayList<>();
         antalgaettet = new ArrayList<>();
 
+
         return root;
     }
 
@@ -109,4 +119,13 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
 
     }
+
+
+    public static void printOrd(List<String> ord){
+        for (String s:ord) {
+            System.out.println(s);
+        }
+    }
+
+
 }
