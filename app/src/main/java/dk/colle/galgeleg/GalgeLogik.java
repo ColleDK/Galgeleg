@@ -1,5 +1,9 @@
 package dk.colle.galgeleg;
 
+import android.os.Handler;
+import android.os.Looper;
+import android.os.SystemClock;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,15 +27,19 @@ public class GalgeLogik {
 
     public GalgeLogik(StartSpil_frag spf) {
         this.spf = spf;
-        muligeOrd.add("bil");
-//        muligeOrd.add("computer");
-//        muligeOrd.add("programmering");
-//        muligeOrd.add("motorvej");
-//        muligeOrd.add("busrute");
-//        muligeOrd.add("gangsti");
-//        muligeOrd.add("skovsnegl");
-//        muligeOrd.add("solsort");
-//        muligeOrd.add("nitten");
+
+        Runnable r = new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    hentOrdFraDr();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        };
+        new Thread(r).start();
+        SystemClock.sleep(700);
         nulstil();
     }
 
@@ -76,6 +84,7 @@ public class GalgeLogik {
             sidsteBogstavVarKorrekt = false;
             antalForkerteBogstaver = antalForkerteBogstaver + 1;
             if (antalForkerteBogstaver > 6) {
+                spf.setRigtigtOrd(ordet);
                 spf.tabt();
                 spilletErTabt = true;
             }

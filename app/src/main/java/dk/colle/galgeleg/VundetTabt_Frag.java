@@ -36,7 +36,7 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
             gaettetOrd.setText(bundle.getString("rigtigtOrd"));
 
             antalForsoeg = rod.findViewById(R.id.spilSlut_AntalForsøg);
-            if (antalForsoeg != null) {
+            if (bundle.getString("antalGættede") != null) {
                 antalForsoeg.setText(bundle.getString("antalGættede"));
 
                 if (bundle != gammelBundle) {
@@ -85,7 +85,6 @@ public class VundetTabt_Frag extends Fragment implements View.OnClickListener {
         getFragmentManager().beginTransaction().replace(R.id.spilSlut_nytSpilBox, new StartMenu_knapper_Frag())
                 .addToBackStack(null)
                 .commit();
-
 
         return rod;
     }
