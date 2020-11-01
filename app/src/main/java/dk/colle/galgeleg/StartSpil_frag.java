@@ -208,4 +208,11 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.start();
     }
 
+    public void playNope(){
+        MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.nope);
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setLooping(false);
+        mMediaPlayer.start();
+    }
+
 }

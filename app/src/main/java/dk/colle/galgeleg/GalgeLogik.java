@@ -20,6 +20,7 @@ public class GalgeLogik {
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
     private String synligtOrd;
     private int antalForkerteBogstaver;
+    private int korrektBogstaver;
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
@@ -59,10 +60,12 @@ public class GalgeLogik {
     private void opdaterSynligtOrd() {
         synligtOrd = "";
         spilletErVundet = true;
+        korrektBogstaver=0;
         for (int n = 0; n < ordet.length(); n++) {
             String bogstav = ordet.substring(n, n + 1);
             if (brugteBogstaver.contains(bogstav)) {
                 synligtOrd = synligtOrd + bogstav;
+                korrektBogstaver++;
             } else {
                 synligtOrd = synligtOrd + "*";
                 spilletErVundet = false;
@@ -73,9 +76,15 @@ public class GalgeLogik {
 
     public void gætBogstav(String bogstav) {
         // some easter eggs 0-0
-        if (bogstav.equals("showmetheway")){
-            bogstavHint();
-            spf.playCheatingSound();
+        if (bogstav.equals("showmetheway")) {
+            System.out.println(ordet.length()+"\t"+korrektBogstaver);
+            if (ordet.length() == korrektBogstaver+1) {
+                bogstavHint("remove");
+                spf.playNope();
+            } else {
+                bogstavHint("add");
+                spf.playCheatingSound();
+            }
         }
         if (bogstav.equals("420")){
             spf.playSmoke();
@@ -195,16 +204,25 @@ public class GalgeLogik {
         nulstil();
     }
 
-    public void bogstavHint(){
+    public void bogstavHint(String remove){
         for (int i = 0; i < ordet.length(); i++) {
-            if (!brugteBogstaver.contains(ordet.charAt(i)+"")){
-                brugteBogstaver.add(ordet.charAt(i)+"");
-                opdaterSynligtOrd();
-                if (spilletErVundet){
-                    spf.vundet(antalForkerteBogstaver);
+            if (remove.equals("add")) {
+                if (!brugteBogstaver.contains(ordet.charAt(i) + "")) {
+                    brugteBogstaver.add(ordet.charAt(i) + "");
+                    opdaterSynligtOrd();
+                    if (spilletErVundet) {
+                        spf.vundet(antalForkerteBogstaver);
+                    }
+                    break;
                 }
-                break;
+            }
+            else if (remove.equals("remove")){
+                if (brugteBogstaver.contains(ordet.charAt(i)+"")){
+                    brugteBogstaver.remove(ordet.charAt(i)+"");
+                    korrektBogstaver=0;
+                }
             }
         }
+        opdaterSynligtOrd();
     }
 }
