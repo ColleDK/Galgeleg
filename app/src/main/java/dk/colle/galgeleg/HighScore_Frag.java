@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class HighScore_Frag extends Fragment implements View.OnClickListener{
     ListView listview;
@@ -34,18 +35,43 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         //prefs.edit().clear().apply();
 
         String ordSomString = prefs.getString("ord", "");
+        System.out.println(ordSomString);
         ord = Arrays.asList(ordSomString.split(","));
 
         String antalGættetSomString = prefs.getString("antalgaettet", "");
         antalgaettet = Arrays.asList(antalGættetSomString.split(","));
 
-        for (int j=0; j<ord.size(); j++) {
+        for (int j=1; j<ord.size(); j++) {
             String replaceLetters  = ord.get(j);
             replaceLetters = replaceLetters.replaceAll("]","");
             ord.set(j, replaceLetters);
             String replaceLetters2  = antalgaettet.get(j);
             replaceLetters2 = replaceLetters2.replaceAll("]","");
             antalgaettet.set(j, replaceLetters2);
+        }
+
+        for (int j=1; j<ord.size()-1; j++) {
+            String replaceLetters1  = antalgaettet.get(j);
+            replaceLetters1 = replaceLetters1.replaceAll(" ","");
+            String replaceLetters2  = antalgaettet.get(j+1);
+            replaceLetters2 = replaceLetters2.replaceAll(" ","");
+
+            if (Integer.parseInt(replaceLetters1.charAt(9)+"") > Integer.parseInt(replaceLetters2.charAt(9)+"")){
+                String temp1 = antalgaettet.get(j);
+                System.out.println(temp1);
+                String temp2 = ord.get(j);
+
+                antalgaettet.set(j, antalgaettet.get(j+1));
+                System.out.println(ord.get(j));
+                ord.set(j, ord.get(j+1));
+                System.out.println(ord.get(j));
+
+                antalgaettet.set((j+1), temp1);
+                ord.set((j+1), temp2);
+
+                j=j-2;
+                if(j < 1){j=1;}
+            }
         }
 
 
@@ -59,7 +85,7 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
          * Completely stolen from this site cause i dont know how to set up multiple parameters in a adapter
          */
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
-        Map<String, String> map;
+        Map<String, String> map = null;
         int count = Math.min(ord.size(),antalgaettet.size());
         for(int k = 1; k < count; k++) {
             map = new HashMap<String, String>();
@@ -70,6 +96,10 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
 
         adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[] { "ord", "antalgaettet" }, new int[] { R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid });
         listview.setAdapter(adapter);
+
+
+        ord = new ArrayList<>();
+        antalgaettet = new ArrayList<>();
 
         return root;
     }

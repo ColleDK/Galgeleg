@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -21,7 +22,7 @@
         android:id="@+id/galgebillede"
         android:layout_width="315dp"
         android:layout_height="286dp"
-        android:layout_marginTop="84dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ordDerBliverGaettetPaa2"
@@ -29,10 +30,11 @@
 
     <ListView
         android:id="@+id/gaettedeBogstaver"
-        android:layout_width="325dp"
-        android:layout_height="122dp"
-        android:layout_marginTop="28dp"
+        android:layout_width="376dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/galgebillede" />
 
@@ -40,28 +42,27 @@
         android:id="@+id/gaet"
         android:layout_width="122dp"
         android:layout_height="55dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="28dp"
+        android:layout_marginEnd="32dp"
         android:text="Gæt"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.533"
+        app:layout_constraintStart_toEndOf="@+id/bogstav"
         app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.123" />
 
     <EditText
         android:id="@+id/bogstav"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginStart="32dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Indtast et bogstav her"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/gaet"
-        app:layout_constraintHorizontal_bias="0.77"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gaettedeBogstaver"
-        app:layout_constraintVertical_bias="0.014" />
+        app:layout_constraintVertical_bias="0.16" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
