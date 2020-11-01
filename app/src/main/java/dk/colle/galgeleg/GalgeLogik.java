@@ -78,7 +78,7 @@ public class GalgeLogik {
         /**
          * https://stackoverflow.com/questions/34855046/check-if-input-is-one-single-letter-java
          */
-        if (bogstav.matches("[A-Za-z]{1}")) {
+        if (bogstav.matches("[A-Za-zæøå]{1}")) {
             brugteBogstaver.add(bogstav);
 
             if (ordet.contains(bogstav)) {
