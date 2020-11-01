@@ -39,7 +39,9 @@ public class GalgeLogik {
             }
         };
         new Thread(r).start();
-        SystemClock.sleep(700);
+        while(muligeOrd.isEmpty()){
+            SystemClock.sleep(1);
+        }
         nulstil();
     }
 
