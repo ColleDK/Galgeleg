@@ -9,7 +9,7 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 public class Hjaelp_Frag extends Fragment{
-    TextView howToPlay;
+    private TextView howToPlay;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_hjaelp,container,false);

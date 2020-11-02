@@ -17,15 +17,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HighScore_Frag extends Fragment implements View.OnClickListener{
-    ListView listview;
-    SharedPreferences prefs;
-    List<String> antalgaettet;
-    List<String> ord;
+public class HighScore_Frag extends Fragment {
+    private ListView listview;
+    private SharedPreferences prefs;
+    private List<String> antalgaettet;
+    private List<String> ord;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View root = i.inflate(R.layout.frag_highscore,container,false);
+        View root = i.inflate(R.layout.frag_highscore, container, false);
 
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -54,7 +54,6 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         }
 
 
-
         if (ord.size() != 1) {
             for (int j = 1; j < ord.size() - 1; j++) {
                 String replaceLetters1 = antalgaettet.get(j);
@@ -77,8 +76,8 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
                     ord.set((j + 1), temp2);
 
                     j -= 2;
-                    if (j < 1){
-                        j=0;
+                    if (j < 1) {
+                        j = 0;
                     }
                 }
             }
@@ -89,22 +88,21 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
         SimpleAdapter adapter;
 
 
-
         /**
          * https://stackoverflow.com/questions/11584398/passing-multiple-listsstring-into-arrayadapter
          * Completely stolen from this site cause i dont know how to set up multiple parameters in a adapter
          */
         List<Map<String, String>> list = new ArrayList<Map<String, String>>();
         Map<String, String> map = null;
-        int count = Math.min(ord.size(),antalgaettet.size());
-        for(int k = 1; k < count; k++) {
+        int count = Math.min(ord.size(), antalgaettet.size());
+        for (int k = 1; k < count; k++) {
             map = new HashMap<String, String>();
-            map.put("ord", ord.toArray()[k]+"");
-            map.put("antalgaettet",antalgaettet.toArray()[k]+"");
+            map.put("ord", ord.toArray()[k] + "");
+            map.put("antalgaettet", antalgaettet.toArray()[k] + "");
             list.add(map);
         }
 
-        adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[] { "ord", "antalgaettet" }, new int[] { R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid });
+        adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[]{"ord", "antalgaettet"}, new int[]{R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid});
         listview.setAdapter(adapter);
 
 
@@ -113,11 +111,6 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
 
 
         return root;
-    }
-
-
-    @Override
-    public void onClick(View v) {
 
     }
 }

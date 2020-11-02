@@ -14,11 +14,11 @@ import android.widget.TextView;
 
 
 public class StartSpil_Frag extends Fragment implements View.OnClickListener {
-    GalgeLogik logik;
-    ImageView billede;
-    EditText gaetBogstav;
-    TextView rigtigtOrd;
-    Button gaet, forkert1, forkert2, forkert3, forkert4, forkert5, forkert6;
+    private GalgeLogik logik;
+    private ImageView billede;
+    private EditText gaetBogstav;
+    private TextView rigtigtOrd;
+    private Button gaet, forkert1, forkert2, forkert3, forkert4, forkert5, forkert6;
 
 
     @Override
@@ -187,21 +187,21 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         mMediaPlayer.start();
     }
 
-    public void playSmoke(){
+    public void playSmokeSound(){
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.smoke);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
     }
 
-    public void playDenied(){
+    public void playDeniedSound(){
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.denied);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
     }
 
-    public void playNope(){
+    public void playNopeSound(){
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.nope);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mMediaPlayer.setLooping(false);

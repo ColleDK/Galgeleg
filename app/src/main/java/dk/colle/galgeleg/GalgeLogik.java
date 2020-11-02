@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class GalgeLogik {
     /** AHT afprøvning er muligeOrd synlig på pakkeniveau */
-    ArrayList<String> muligeOrd = new ArrayList<>();
+    private ArrayList<String> muligeOrd = new ArrayList<>();
     private String ordet;
     private ArrayList<String> brugteBogstaver = new ArrayList<String>();
     private String synligtOrd;
@@ -22,7 +22,7 @@ public class GalgeLogik {
     private int korrektBogstaver;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
-    StartSpil_Frag spf;
+    private StartSpil_Frag spf;
 
     private GalgeLogik(GalgeLogikBuilder logikBuilder) {
         this.spf = logikBuilder.spf;
@@ -69,17 +69,17 @@ public class GalgeLogik {
             System.out.println(ordet.length()+"\t"+korrektBogstaver);
             if (ordet.length() == korrektBogstaver+1) {
                 bogstavHint("remove");
-                spf.playNope();
+                spf.playNopeSound();
             } else {
                 bogstavHint("add");
                 spf.playCheatingSound();
             }
         }
         if (bogstav.equals("420")){
-            spf.playSmoke();
+            spf.playSmokeSound();
         }
         if (bogstav.equals("plsletmein")){
-            spf.playDenied();
+            spf.playDeniedSound();
         }
 
 

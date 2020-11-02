@@ -9,7 +9,7 @@ import android.widget.Button;
 import androidx.fragment.app.Fragment;
 
 public class StartMenu_knapper_Frag extends Fragment implements View.OnClickListener {
-    Button startSpil, highScore, hjaelp;
+    private Button startSpil, highScore, hjaelp;
 
 
     @Override
