@@ -1,7 +1,6 @@
 package dk.colle.galgeleg;
 
-import android.os.Handler;
-import android.os.Looper;
+
 import android.os.SystemClock;
 
 import java.io.BufferedReader;
@@ -24,9 +23,9 @@ public class GalgeLogik {
     private boolean sidsteBogstavVarKorrekt;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
-    StartSpil_frag spf;
+    StartSpil_Frag spf;
 
-    public GalgeLogik(StartSpil_frag spf) {
+    public GalgeLogik(StartSpil_Frag spf) {
         this.spf = spf;
 
         Runnable r = new Runnable() {

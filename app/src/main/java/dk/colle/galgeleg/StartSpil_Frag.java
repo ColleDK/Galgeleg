@@ -1,6 +1,5 @@
 package dk.colle.galgeleg;
 
-import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -8,19 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 
-
-public class StartSpil_frag extends Fragment implements View.OnClickListener {
+public class StartSpil_Frag extends Fragment implements View.OnClickListener {
     GalgeLogik logik;
     ImageView billede;
     EditText gaetBogstav;
@@ -30,7 +23,7 @@ public class StartSpil_frag extends Fragment implements View.OnClickListener {
 
     @Override
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.activity_start_spil,container,false);
+        View rod = i.inflate(R.layout.frag_start_spil,container,false);
         billede = rod.findViewById(R.id.galgebillede);
         billede.setImageResource(R.drawable.galge);
 

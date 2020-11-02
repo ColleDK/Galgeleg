@@ -1,6 +1,5 @@
 package dk.colle.galgeleg;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,7 +36,7 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
         if (v == startSpil){
             getFragmentManager().beginTransaction()
                     .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new StartSpil_frag())
+                    .replace(R.id.fragmentView, new StartSpil_Frag())
                     .addToBackStack(null)
                     .commit();
         }
