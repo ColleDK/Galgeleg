@@ -3,7 +3,6 @@ package dk.colle.galgeleg;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.ArraySet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,8 +16,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
 
 public class HighScore_Frag extends Fragment implements View.OnClickListener{
     ListView listview;
@@ -65,7 +62,9 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
                 replaceLetters1 = replaceLetters1.replaceAll(" ", "");
                 replaceLetters2 = replaceLetters2.replaceAll(" ", "");
 
-                System.out.println(antalgaettet.get(j));
+
+                System.out.println(replaceLetters1 + "\t" + replaceLetters2);
+                System.out.println(Integer.parseInt(replaceLetters1.charAt(12) + "") > Integer.parseInt(replaceLetters2.charAt(12) + ""));
 
                 if (Integer.parseInt(replaceLetters1.charAt(12) + "") > Integer.parseInt(replaceLetters2.charAt(12) + "")) {
                     String temp1 = antalgaettet.get(j);
@@ -77,9 +76,9 @@ public class HighScore_Frag extends Fragment implements View.OnClickListener{
                     antalgaettet.set((j + 1), temp1);
                     ord.set((j + 1), temp2);
 
-                    j = j - 2;
-                    if (j < 1) {
-                        j = 1;
+                    j -= 2;
+                    if (j < 1){
+                        j=0;
                     }
                 }
             }
