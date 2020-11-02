@@ -160,10 +160,15 @@ public class GalgeLogik {
         }
 
         public GalgeLogikBuilder addNormaleOrd(){
-            this.muligeOrd.add("Bil");
-            this.muligeOrd.add("Yatta");
-            this.muligeOrd.add("Obi Wan Kenobi");
-            this.muligeOrd.add("Dat wassup");
+            muligeOrd.add("bil");
+            muligeOrd.add("computer");
+            muligeOrd.add("programmering");
+            muligeOrd.add("motorvej");
+            muligeOrd.add("busrute");
+            muligeOrd.add("gangsti");
+            muligeOrd.add("skovsnegl");
+            muligeOrd.add("solsort");
+            muligeOrd.add("tyve");
             return this;
         }
 
@@ -172,6 +177,11 @@ public class GalgeLogik {
         }
 
         public GalgeLogikBuilder ordFraDR(){
+            ArrayList<String> muligeOrdTemp = new ArrayList<>();
+            if (!muligeOrd.isEmpty()){
+                muligeOrdTemp = muligeOrd;
+                muligeOrd.clear();
+            }
             Runnable r = new Runnable() {
                 @Override
                 public void run() {
@@ -186,6 +196,7 @@ public class GalgeLogik {
             while(muligeOrd.isEmpty()){
                 SystemClock.sleep(1);
             }
+            muligeOrd.addAll(muligeOrdTemp);
             return this;
         }
 
