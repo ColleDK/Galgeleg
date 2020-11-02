@@ -172,10 +172,6 @@ public class GalgeLogik {
             return this;
         }
 
-        public GalgeLogik build(){
-            return new GalgeLogik(this);
-        }
-
         public GalgeLogikBuilder ordFraDR(){
             ArrayList<String> muligeOrdTemp = new ArrayList<>();
             if (!muligeOrd.isEmpty()){
@@ -199,6 +195,11 @@ public class GalgeLogik {
             muligeOrd.addAll(muligeOrdTemp);
             return this;
         }
+
+        public GalgeLogik build(){
+            return new GalgeLogik(this);
+        }
+
 
         private void hentOrdFraDr(){
             String data = null;
