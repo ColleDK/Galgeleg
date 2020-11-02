@@ -46,7 +46,7 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         gaet.setOnClickListener(this);
         gaetBogstav.setOnClickListener(this);
 
-        logik = new GalgeLogik(this);
+        logik = new GalgeLogik.GalgeLogikBuilder().startSpilFrag(this).ordFraDR().addNormaleOrd().build();
 
         return rod;
     }
