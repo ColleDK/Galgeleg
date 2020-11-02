@@ -44,7 +44,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/forkert2"
@@ -52,7 +53,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/forkert3"
@@ -60,7 +62,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/forkert4"
@@ -68,7 +71,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/forkert5"
@@ -76,7 +80,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
         <Button
             android:id="@+id/forkert6"
@@ -84,7 +89,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="Button"
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:clickable="false"/>
 
     </LinearLayout>
 
