@@ -23,8 +23,10 @@ public class VundetTabt_Frag extends Fragment{
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_vundettabt_spil,container,false);
 
+        // få bundlen som jeg havde lagt informationer ind i
         Bundle bundle = this.getArguments();
 
+        // den her er nok ligegyldig
         if (bundle != null) {
             vundetTabt = rod.findViewById(R.id.spilSlut_duHarVundetTabt);
             vundetTabt.setText(bundle.getString("harVundet"));
@@ -33,9 +35,12 @@ public class VundetTabt_Frag extends Fragment{
             gaettetOrd.setText(bundle.getString("rigtigtOrd"));
 
             antalForsoeg = rod.findViewById(R.id.spilSlut_AntalForsøg);
+
+            // hvis man har vundet så er antalGættede ikke null
             if (bundle.getString("antalGættede") != null) {
                 antalForsoeg.setText(bundle.getString("antalGættede"));
 
+                // hvis man nu havde trykket tilbage (poppet backstacken) så skal den ikke køre den her del igen
                 if (bundle != gammelBundle) {
                     gammelBundle = bundle;
                     prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
@@ -65,6 +70,7 @@ public class VundetTabt_Frag extends Fragment{
 
                     /**
                      * https://stackoverflow.com/questions/17469583/setstring-in-android-sharedpreferences-does-not-save-on-force-close
+                     * nok ligegyldig nu, men jeg brugte stringset før og den kunne ikke gemme uden at slette forrige set
                      */
 
                     prefs.edit().remove("ord").apply();

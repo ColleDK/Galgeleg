@@ -27,10 +27,12 @@ public class HighScore_Frag extends Fragment {
         super.onCreate(savedInstanceState);
         View root = i.inflate(R.layout.frag_highscore, container, false);
 
+        // bruges til at hente data fra cachen
         prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
         //prefs.edit().clear().apply();
 
+        // hent ord der blev gættet korrekt og antallet forkerte og split strengene til arrays
         String ordSomString = prefs.getString("ord", "");
         ord = Arrays.asList(ordSomString.split(","));
 
@@ -38,7 +40,7 @@ public class HighScore_Frag extends Fragment {
         String antalGættetSomString = prefs.getString("antalgaettet", "");
         antalgaettet = Arrays.asList(antalGættetSomString.split(","));
 
-
+        // den her del fjerner alle [] fra strengen af og fjerner de mellemrum der er opstået når strengene bliver gemt
         if (ord.size() != 1) {
             for (int j = 1; j < ord.size(); j++) {
                 String replaceLetters = ord.get(j);
@@ -54,6 +56,7 @@ public class HighScore_Frag extends Fragment {
         }
 
 
+        // den her del vil sætte det hele i korrekt orden efter antal forkerte
         if (ord.size() != 1) {
             for (int j = 1; j < ord.size() - 1; j++) {
                 String replaceLetters1 = antalgaettet.get(j);
@@ -61,9 +64,6 @@ public class HighScore_Frag extends Fragment {
                 replaceLetters1 = replaceLetters1.replaceAll(" ", "");
                 replaceLetters2 = replaceLetters2.replaceAll(" ", "");
 
-
-                System.out.println(replaceLetters1 + "\t" + replaceLetters2);
-                System.out.println(Integer.parseInt(replaceLetters1.charAt(12) + "") > Integer.parseInt(replaceLetters2.charAt(12) + ""));
 
                 if (Integer.parseInt(replaceLetters1.charAt(12) + "") > Integer.parseInt(replaceLetters2.charAt(12) + "")) {
                     String temp1 = antalgaettet.get(j);
@@ -83,7 +83,7 @@ public class HighScore_Frag extends Fragment {
             }
         }
 
-
+        // instantier listen der indeholder highscoresne og klargør en adapter til at skrive data ind i listen
         listview = root.findViewById(R.id.highscoreListeView);
         SimpleAdapter adapter;
 
@@ -104,7 +104,6 @@ public class HighScore_Frag extends Fragment {
 
         adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[]{"ord", "antalgaettet"}, new int[]{R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid});
         listview.setAdapter(adapter);
-
 
         ord = new ArrayList<>();
         antalgaettet = new ArrayList<>();

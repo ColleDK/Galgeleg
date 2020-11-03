@@ -24,11 +24,9 @@ public class GalgeLogik {
     private boolean spilletErTabt;
     private StartSpil_Frag spf;
 
+    // brug builderen til at konstruere logikken
     private GalgeLogik(GalgeLogikBuilder logikBuilder) {
         this.spf = logikBuilder.spf;
-        System.out.println(logikBuilder.toString());
-
-
         if (logikBuilder.muligeOrd != null) {
             muligeOrd.addAll(logikBuilder.muligeOrd);
         }
@@ -64,7 +62,7 @@ public class GalgeLogik {
     }
 
     public void gætBogstav(String bogstav) {
-        // some easter eggs 0-0
+        // some easter eggs (jeg havde lidt sjov med mediaplayeren)
         if (bogstav.equals("showmetheway")) {
             System.out.println(ordet.length()+"\t"+korrektBogstaver);
             if (ordet.length() == korrektBogstaver+1) {
@@ -118,6 +116,7 @@ public class GalgeLogik {
     }
 
 
+    // hvis man gerne vil have et hint har jeg sat en secret ind
     public void bogstavHint(String remove){
         for (int i = 0; i < ordet.length(); i++) {
             if (remove.equals("add")) {
@@ -154,11 +153,13 @@ public class GalgeLogik {
 
         }
 
+        // sæt startspil_frag
         public GalgeLogikBuilder startSpilFrag(StartSpil_Frag spf){
             this.spf = spf;
             return this;
         }
 
+        // hvis man vil indsætte prædefinerede ord
         public GalgeLogikBuilder addNormaleOrd(){
             muligeOrd.add("bil");
             muligeOrd.add("computer");
@@ -172,26 +173,30 @@ public class GalgeLogik {
             return this;
         }
 
+        // hvis man vil hente ord fra dr
         public GalgeLogikBuilder ordFraDR(){
             ArrayList<String> muligeOrdTemp = new ArrayList<>();
+            // tjek om der er ord i listen, hvis ja så gem indholdet midlertidigt og fjern ordene
             if (!muligeOrd.isEmpty()){
                 muligeOrdTemp = muligeOrd;
                 muligeOrd.clear();
             }
-            Runnable r = new Runnable() {
-                @Override
-                public void run() {
-                    try {
-                        hentOrdFraDr();
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+
+            Runnable r = () -> {
+                try {
+                    hentOrdFraDr();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
             };
             new Thread(r).start();
+
+            // vent på at der er blevet tilføjet ord, hvis ikke så vent lidt tid
             while(muligeOrd.isEmpty()){
                 SystemClock.sleep(1);
             }
+
+            // tilføj ordene fra midlertidig liste (hvis den er tom så kommer der ikke noget)
             muligeOrd.addAll(muligeOrdTemp);
             return this;
         }

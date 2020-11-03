@@ -14,6 +14,7 @@ public class Hjaelp_Frag extends Fragment{
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_hjaelp,container,false);
 
+        // skriv en lang tekst med hvordan man spiller spillet
         String howToPlay1 = "Galgeleg er et spil, hvor man gætter et hemmeligt ord (som kan ses øverst på skærmen når spillet er i gang)." +
                 "\nNår du skal gætte et bogstav i ordet, så skal du indtaste det i feltet til venstre for \"Gæt på bogstav\"-knappen. " +
                 "\nFor at finde ud af om du svarede korrekt eller forkert kan du finde frem til det ved at " +
@@ -25,7 +26,6 @@ public class Hjaelp_Frag extends Fragment{
 
         howToPlay = rod.findViewById(R.id.hjaelp_how2play);
         howToPlay.setText(howToPlay1);
-
 
         return rod;
     }

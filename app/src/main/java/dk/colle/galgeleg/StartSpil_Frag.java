@@ -46,6 +46,7 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         gaet.setOnClickListener(this);
         gaetBogstav.setOnClickListener(this);
 
+        // byg galgelogikken gennem builderen
         logik = new GalgeLogik.GalgeLogikBuilder().startSpilFrag(this).ordFraDR().addNormaleOrd().build();
 
         return rod;
@@ -59,10 +60,12 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
             gaetBogstav.setText("");
         }
         else if (v == gaetBogstav){
+            // ved ikke hvorfor den kun virker når man trykker 2 gange på teksten
             gaetBogstav.setText("");
         }
     }
 
+    // skriv det bogstav man gættede forkert med ind på en knap
     public void setNytGaettedeBogstaver(String nytBogstav, int antalForkerte){
         switch (antalForkerte) {
             case 1:
@@ -92,12 +95,12 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         }
     }
 
-
+    // opdater det synlige ord i toppen af skærmen
     public void setRigtigtOrd(String ord){
         rigtigtOrd.setText(ord);
     }
 
-
+    // sæt det billede der skal vises alt efter hvor mange forkerte man har fået
     public void setBillede(int antalFejl) {
         switch (antalFejl) {
             case 1: billede.setImageResource(R.drawable.forkert1);
@@ -115,6 +118,7 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         }
     }
 
+    // spil nogle lyde og send noget information videre til næste skærmbillede
     public void vundet(int antalFejl){
         /**
          * https://stackoverflow.com/questions/6464080/how-to-play-mp3-file-in-raw-folder-as-notification-sound-alert-in-android
@@ -144,6 +148,7 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
                 .commit();
     }
 
+    // spil nogle lyde og send noget information videre til næste skærmbillede
     public void tabt(){
         MediaPlayer mMediaPlayer = MediaPlayer.create(getContext(),R.raw.ohno);
         mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
