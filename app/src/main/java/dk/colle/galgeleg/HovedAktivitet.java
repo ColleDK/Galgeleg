@@ -24,7 +24,6 @@ public class HovedAktivitet extends AppCompatActivity {
 
         setTitle("'Galgeleg'");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
 
     @Override

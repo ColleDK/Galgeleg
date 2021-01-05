@@ -1,6 +1,7 @@
 package dk.colle.galgeleg;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
@@ -9,6 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
+
+import com.github.jinatonic.confetti.CommonConfetti;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -42,6 +45,7 @@ public class VundetTabt_Frag extends Fragment{
 
                 // hvis man nu havde trykket tilbage (poppet backstacken) så skal den ikke køre den her del igen
                 if (bundle != gammelBundle) {
+                    CommonConfetti.rainingConfetti(container,new int[] {Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW, Color.BLUE}).stream(7000);
                     gammelBundle = bundle;
                     prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
