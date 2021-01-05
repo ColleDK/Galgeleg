@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class StartSpil_Frag extends Fragment implements View.OnClickListener {
     private GalgeLogik logik;
@@ -28,7 +30,7 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         billede.setImageResource(R.drawable.galge);
 
         gaetBogstav = rod.findViewById(R.id.bogstav);
-        gaetBogstav.setText("Indtast bogstav her");
+        gaetBogstav.setHint("Indtast bogstav her");
 
         gaet = rod.findViewById(R.id.gaet);
         gaet.setText("Gæt på bogstav");
@@ -47,7 +49,25 @@ public class StartSpil_Frag extends Fragment implements View.OnClickListener {
         gaetBogstav.setOnClickListener(this);
 
         // byg galgelogikken gennem builderen
-        logik = new GalgeLogik.GalgeLogikBuilder().startSpilFrag(this).ordFraDR().addNormaleOrd().build();
+        Bundle bundle = this.getArguments();
+        boolean isOrdFraDR = bundle.getBoolean("ordFraDR");
+        boolean isEgneOrd = bundle.getBoolean("egneOrd");
+        boolean isPre = bundle.getBoolean("pre");
+
+        GalgeLogik.GalgeLogikBuilder builder = new GalgeLogik.GalgeLogikBuilder().startSpilFrag(this);
+
+        if (isEgneOrd){
+            ArrayList<String> egneOrd = bundle.getStringArrayList("egneOrdList");
+            builder.addEgneOrdList(egneOrd);
+        }
+        if (isOrdFraDR){
+            builder.ordFraDR();
+        }
+        if (isPre){
+            builder.addNormaleOrd();
+        }
+
+        logik = builder.build();
 
         return rod;
     }

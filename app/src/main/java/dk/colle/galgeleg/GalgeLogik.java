@@ -173,6 +173,11 @@ public class GalgeLogik {
             return this;
         }
 
+        public GalgeLogikBuilder addEgneOrdList(ArrayList<String> egneOrd){
+            muligeOrd.addAll(egneOrd);
+            return this;
+        }
+
         // hvis man vil hente ord fra dr
         public GalgeLogikBuilder ordFraDR(){
             ArrayList<String> muligeOrdTemp = new ArrayList<>();
