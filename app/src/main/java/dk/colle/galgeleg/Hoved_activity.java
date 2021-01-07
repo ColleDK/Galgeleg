@@ -8,7 +8,7 @@ import android.view.MenuItem;
 import android.view.Window;
 
 
-public class HovedAktivitet extends AppCompatActivity {
+public class Hoved_activity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

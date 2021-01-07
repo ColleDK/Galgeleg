@@ -6,7 +6,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
 import android.view.View;
 import android.widget.Button;
@@ -153,7 +152,7 @@ public class StartSpil_activity extends AppCompatActivity implements View.OnClic
         mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
 
-        Intent intent = new Intent (this, HovedAktivitet.class);
+        Intent intent = new Intent (this, Hoved_activity.class);
         intent.putExtra("EXTRA", "openFragment");
         intent.putExtra("harVundet","Du har vundet").putExtra("rigtigtOrd","Ordet var: " + rigtigtOrd.getText()+"").putExtra("antalGættede","Du gættede kun " + antalFejl +" gang(e) forkert");
         finish();
@@ -170,7 +169,7 @@ public class StartSpil_activity extends AppCompatActivity implements View.OnClic
         mMediaPlayer.setLooping(false);
         mMediaPlayer.start();
 
-        Intent intent = new Intent (this, HovedAktivitet.class);
+        Intent intent = new Intent (this, Hoved_activity.class);
         intent.putExtra("EXTRA", "openFragment");
         intent.putExtra("harVundet","Du vandt ikke").putExtra("rigtigtOrd","Det rigtige ord var " + rigtigtOrd.getText()+"");
         finish();

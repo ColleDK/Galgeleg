@@ -16,7 +16,7 @@
             android:name=".OrdList_activity"
             tools:ignore="Instantiatable" />
         <activity
-            android:name=".HovedAktivitet"
+            android:name=".Hoved_activity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait">
             <intent-filter>
