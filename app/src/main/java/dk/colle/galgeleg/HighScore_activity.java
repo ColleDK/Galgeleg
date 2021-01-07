@@ -6,9 +6,12 @@ import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Adapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
@@ -17,20 +20,25 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HighScore_Frag extends Fragment {
+public class HighScore_activity extends AppCompatActivity {
     private ListView listview;
     private SharedPreferences prefs;
     private List<String> antalgaettet;
     private List<String> ord;
+    private Button sletHistorik;
 
-    public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        View root = i.inflate(R.layout.frag_highscore, container, false);
+        setContentView(R.layout.activity_highscore);
+        listview = findViewById(R.id.highscoreListeView);
+        sletHistorik = findViewById(R.id.sletHistorik);
+        sletHistorik.setOnClickListener(v -> {
+            prefs.edit().clear().apply();
+            clearHistorik();
+        });
 
         // bruges til at hente data fra cachen
-        prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
-
-        //prefs.edit().clear().apply();
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
         // hent ord der blev gættet korrekt og antallet forkerte og split strengene til arrays
         String ordSomString = prefs.getString("ord", "");
@@ -84,7 +92,6 @@ public class HighScore_Frag extends Fragment {
         }
 
         // instantier listen der indeholder highscoresne og klargør en adapter til at skrive data ind i listen
-        listview = root.findViewById(R.id.highscoreListeView);
         SimpleAdapter adapter;
 
 
@@ -102,14 +109,22 @@ public class HighScore_Frag extends Fragment {
             list.add(map);
         }
 
-        adapter = new SimpleAdapter(getActivity(), list, R.layout.highscore_liste_element, new String[]{"ord", "antalgaettet"}, new int[]{R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid});
+        adapter = new SimpleAdapter(this, list, R.layout.highscore_liste_element, new String[]{"ord", "antalgaettet"}, new int[]{R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid});
         listview.setAdapter(adapter);
 
         ord = new ArrayList<>();
         antalgaettet = new ArrayList<>();
+    }
 
 
-        return root;
-
+    private void clearHistorik(){
+        List<Map<String, String>> list = new ArrayList<Map<String, String>>();
+        Map<String, String> map = null;
+        map = new HashMap<String, String>();
+        map.put("ord", "");
+        map.put("antalgaettet", "");
+        list.add(map);
+        SimpleAdapter adapter = new SimpleAdapter(this, list, R.layout.highscore_liste_element, new String[]{"ord", "antalgaettet"}, new int[]{R.id.highscore_liste_ordgaettet, R.id.highscore_liste_tid});
+        listview.setAdapter(adapter);
     }
 }

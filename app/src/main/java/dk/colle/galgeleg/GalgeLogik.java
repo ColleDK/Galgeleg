@@ -22,7 +22,7 @@ public class GalgeLogik {
     private int korrektBogstaver;
     private boolean spilletErVundet;
     private boolean spilletErTabt;
-    private StartSpil_Frag spf;
+    private StartSpil_activity spf;
 
     // brug builderen til at konstruere logikken
     private GalgeLogik(GalgeLogikBuilder logikBuilder) {
@@ -145,7 +145,7 @@ public class GalgeLogik {
 
     // Inner builder class
     public static class GalgeLogikBuilder{
-        private StartSpil_Frag spf;
+        private StartSpil_activity spf;
         private ArrayList<String> muligeOrd = new ArrayList<String>();
 
 
@@ -154,7 +154,7 @@ public class GalgeLogik {
         }
 
         // sæt startspil_frag
-        public GalgeLogikBuilder startSpilFrag(StartSpil_Frag spf){
+        public GalgeLogikBuilder startSpilFrag(StartSpil_activity spf){
             this.spf = spf;
             return this;
         }

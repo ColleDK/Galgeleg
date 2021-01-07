@@ -1,5 +1,6 @@
 package dk.colle.galgeleg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,20 +11,32 @@ import android.view.Window;
 public class HovedAktivitet extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hoved_aktivitet);
 
-        if (savedInstanceState == null) {
-            Fragment fragment = new StartMenu_Frag();
-            getSupportFragmentManager().beginTransaction()
-                    .add(R.id.fragmentView, fragment)  // tom container i layout
-                    .commit();
-        }
+        if ("openFragment".equals(getIntent().getStringExtra("EXTRA"))) {
+            Intent i = getIntent();
 
-        setTitle("'Galgeleg'");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            Bundle bundle = new Bundle();
+            bundle.putString("harVundet", i.getStringExtra("harVundet"));
+            bundle.putString("rigtigtOrd", i.getStringExtra("rigtigtOrd"));
+            bundle.putString("antalGættede", i.getStringExtra("antalGættede"));
+
+            Fragment fragment = new VundetTabt_Frag();
+            fragment.setArguments(bundle);
+
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragmentView, fragment).commit();
+        } else {
+
+            if (savedInstanceState == null) {
+                startActivity(new Intent(this, StartMenu_activity.class));
+            }
+
+            setTitle("'Galgeleg'");
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     @Override

@@ -13,7 +13,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".OrdList_Frag"
+            android:name=".OrdList_activity"
             tools:ignore="Instantiatable" />
         <activity
             android:name=".HovedAktivitet"
@@ -25,6 +25,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".HighScore_activity" />
+        <activity android:name=".Hjaelp_activity" />
+        <activity android:name=".StartSpil_activity" />
+        <activity android:name=".StartMenu_activity" />
 
         <meta-data
             android:name="preloaded_fonts"

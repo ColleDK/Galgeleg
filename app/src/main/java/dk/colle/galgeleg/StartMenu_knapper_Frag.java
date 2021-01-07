@@ -1,5 +1,6 @@
 package dk.colle.galgeleg;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,25 +35,16 @@ public class StartMenu_knapper_Frag extends Fragment implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == startSpil){
-            getFragmentManager().beginTransaction()
-                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new OrdList_Frag())
-                    .addToBackStack(null)
-                    .commit();
+            Intent i = new Intent(getContext(), OrdList_activity.class);
+            startActivity(i);
         }
         if (v == hjaelp){
-            getFragmentManager().beginTransaction()
-                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new Hjaelp_Frag())
-                    .addToBackStack(null)
-                    .commit();
+            Intent i = new Intent(getContext(), Hjaelp_activity.class);
+            startActivity(i);
         }
         if (v == highScore){
-            getFragmentManager().beginTransaction()
-                    .setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right)
-                    .replace(R.id.fragmentView, new HighScore_Frag())
-                    .addToBackStack(null)
-                    .commit();
+            Intent i = new Intent(getContext(), HighScore_activity.class);
+            startActivity(i);
         }
     }
 

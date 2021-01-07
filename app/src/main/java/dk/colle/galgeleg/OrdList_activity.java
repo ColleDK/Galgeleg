@@ -1,12 +1,11 @@
 package dk.colle.galgeleg;
 
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Switch;
@@ -15,7 +14,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputLayout;
 import java.util.ArrayList;
 
-public class OrdList_Frag extends Fragment implements View.OnClickListener {
+public class OrdList_activity extends AppCompatActivity implements View.OnClickListener {
     @SuppressLint("UseSwitchCompatOrMaterialCode")
     private Switch ordFraDR, predefined, egneOrd;
     private Button start, godkendOrd;
@@ -25,21 +24,22 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
     private ListView listView;
 
     @Override
-    public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.frag_ord_list,container,false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_ord_list);
 
         predefinedSwitch = true;
         ordFraDRSwitch = true;
         egneOrdSwitch = true;
 
         egneOrdListe = new ArrayList<>();
-        ordFraDR = rod.findViewById(R.id.ordFraDRSwitch);
-        predefined = rod.findViewById(R.id.predefinedOrd);
-        start = rod.findViewById(R.id.ordListStart);
-        inputOrd = rod.findViewById(R.id.ordListEgetOrd);
-        godkendOrd = rod.findViewById(R.id.ordListGodkend);
-        egneOrd = rod.findViewById(R.id.egneOrdSwitch);
-        listView = rod.findViewById(R.id.egneOrdListView);
+        ordFraDR = findViewById(R.id.ordFraDRSwitch);
+        predefined = findViewById(R.id.predefinedOrd);
+        start = findViewById(R.id.ordListStart);
+        inputOrd = findViewById(R.id.ordListEgetOrd);
+        godkendOrd = findViewById(R.id.ordListGodkend);
+        egneOrd = findViewById(R.id.egneOrdSwitch);
+        listView = findViewById(R.id.egneOrdListView);
 
 
         start.setOnClickListener(this);
@@ -47,8 +47,6 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
         predefined.setOnClickListener(this);
         godkendOrd.setOnClickListener(this);
         egneOrd.setOnClickListener(this);
-
-        return rod;
     }
 
 
@@ -56,18 +54,14 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         if (v == start) {
             if ((!ordFraDRSwitch && !predefinedSwitch && !egneOrdSwitch) || (!ordFraDRSwitch && !predefinedSwitch && egneOrdListe.size() == 0)) {
-                Toast.makeText(getActivity(), "Ingen ord er valgt", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Ingen ord er valgt", Toast.LENGTH_SHORT).show();
             } else {
-                assert getFragmentManager() != null;
-                Bundle bundle = new Bundle();
-                bundle.putBoolean("ordFraDR", ordFraDRSwitch);
-                bundle.putBoolean("pre", predefinedSwitch);
-                bundle.putBoolean("egneOrd", egneOrdSwitch);
-                bundle.putStringArrayList("egneOrdList", egneOrdListe);
-                Fragment fragment = new StartSpil_Frag();
-                fragment.setArguments(bundle);
-
-                getFragmentManager().beginTransaction().replace(R.id.fragmentView, fragment).commit();
+                Intent i = new Intent(this, StartSpil_activity.class)
+                        .putExtra("ordFraDR",ordFraDRSwitch)
+                        .putExtra("egneOrd",egneOrdSwitch)
+                        .putExtra("pre",predefinedSwitch)
+                        .putExtra("egneOrdList",egneOrdListe);
+                startActivity(i);
             }
         } else if (v == ordFraDR) {
             ordFraDRSwitch = ordFraDR.isChecked();
@@ -88,10 +82,10 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
                     }
                 }
                 if (sb.length() != blabla.length())
-                    Toast.makeText(getActivity(), "Tal er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Tal er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
                 blabla = sb.toString();
                 if (blabla.contains(" "))
-                    Toast.makeText(getActivity(), "Mellemrum er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Mellemrum er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
                 blabla = blabla.replace(" ", "");
 
 
@@ -105,11 +99,11 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
                     }
                 }
                 if (sb.length() != blabla.length())
-                    Toast.makeText(getActivity(), "Specialtegn er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Specialtegn er ikke tilladt og er blevet fjernet fra ordet", Toast.LENGTH_SHORT).show();
 
                 if (sb.length() != 0) {
                     egneOrdListe.add(sb.toString());
-                    OrdListeElement_Adapter adapter = new OrdListeElement_Adapter(getActivity(), egneOrdListe, this);
+                    OrdListeElement_Adapter adapter = new OrdListeElement_Adapter(this, egneOrdListe, this);
                     listView.setAdapter(adapter);
                 }
                 inputOrd.getEditText().setText("");
@@ -119,7 +113,7 @@ public class OrdList_Frag extends Fragment implements View.OnClickListener {
 
     public void setEgneOrdListe(ArrayList<String> ordListe){
         this.egneOrdListe = ordListe;
-        OrdListeElement_Adapter adapter = new OrdListeElement_Adapter(getActivity(),egneOrdListe, this);
+        OrdListeElement_Adapter adapter = new OrdListeElement_Adapter(this,egneOrdListe, this);
         listView.setAdapter(adapter);
     }
 }

@@ -6,13 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-public class Hjaelp_Frag extends Fragment{
+public class Hjaelp_activity extends AppCompatActivity {
     private TextView howToPlay;
 
-    public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
-        View rod = i.inflate(R.layout.frag_hjaelp,container,false);
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hjaelp);
 
         // skriv en lang tekst med hvordan man spiller spillet
         String howToPlay1 = "Galgeleg er et spil, hvor man gætter et hemmeligt ord (som kan ses øverst på skærmen når spillet er i gang)." +
@@ -24,9 +26,7 @@ public class Hjaelp_Frag extends Fragment{
                 "\n4. Tjekke ordet du gætter på (hvis du har svaret korrekt vil dit bogstav blive synligt i ordet du gætter på)" +
                 "\n\nHvis du svarer forkert 7 gange uden at have vundet, så har du tabt. Hertil vil ordet blive afsløret";
 
-        howToPlay = rod.findViewById(R.id.hjaelp_how2play);
+        howToPlay = findViewById(R.id.hjaelp_how2play);
         howToPlay.setText(howToPlay1);
-
-        return rod;
     }
 }

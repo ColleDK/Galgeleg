@@ -11,17 +11,19 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.github.jinatonic.confetti.CommonConfetti;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class VundetTabt_Frag extends Fragment{
+public class VundetTabt_Frag extends Fragment {
     private TextView vundetTabt, gaettetOrd, antalForsoeg;
     private SharedPreferences prefs;
     private ArrayList<String> antalgaettet = new ArrayList<>();
     private ArrayList<String> ord = new ArrayList<>();
     private Bundle gammelBundle;
+    private LottieAnimationView animation;
 
     public View onCreateView(LayoutInflater i, ViewGroup container, Bundle savedInstanceState) {
         View rod = i.inflate(R.layout.frag_vundettabt_spil,container,false);
@@ -39,13 +41,16 @@ public class VundetTabt_Frag extends Fragment{
 
             antalForsoeg = rod.findViewById(R.id.spilSlut_AntalForsøg);
 
+            animation = rod.findViewById(R.id.animationView);
+            String animationURL = bundle.getString("harVundet").equals("Du har vundet") ? "https://assets9.lottiefiles.com/packages/lf20_d6YcaL.json" : "https://assets7.lottiefiles.com/private_files/lf30_qqRru7.json";
+            animation.setAnimationFromUrl(animationURL);
+
             // hvis man har vundet så er antalGættede ikke null
             if (bundle.getString("antalGættede") != null) {
                 antalForsoeg.setText(bundle.getString("antalGættede"));
 
                 // hvis man nu havde trykket tilbage (poppet backstacken) så skal den ikke køre den her del igen
                 if (bundle != gammelBundle) {
-                    CommonConfetti.rainingConfetti(container,new int[] {Color.GREEN, Color.MAGENTA, Color.RED, Color.YELLOW, Color.BLUE}).stream(7000);
                     gammelBundle = bundle;
                     prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
 
@@ -90,7 +95,6 @@ public class VundetTabt_Frag extends Fragment{
         }
 
         getFragmentManager().beginTransaction().replace(R.id.spilSlut_nytSpilBox, new StartMenu_knapper_Frag())
-                .addToBackStack(null)
                 .commit();
 
         return rod;

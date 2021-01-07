@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,9 +16,9 @@ import java.util.ArrayList;
 public class OrdListeElement_Adapter extends ArrayAdapter<String> {
     private Context context;
     private ArrayList<String> ord;
-    private OrdList_Frag frag;
+    private OrdList_activity frag;
 
-    public OrdListeElement_Adapter(@NonNull Context context, @NonNull ArrayList<String> ord, @NonNull OrdList_Frag frag){
+    public OrdListeElement_Adapter(@NonNull Context context, @NonNull ArrayList<String> ord, @NonNull OrdList_activity frag){
         super(context,0,ord);
         this.context = context;
         this.ord = ord;
